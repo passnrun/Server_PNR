@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="FM" match-name="BAN"/>
+  <table-filter match-catalog="FM" match-name="FINANCE"/>
+  <table-filter match-catalog="FM" match-name="GAME"/>
+  <table-filter match-catalog="FM" match-name="GAMEDETAIL"/>
+  <table-filter match-catalog="FM" match-name="INJURY"/>
+  <table-filter match-catalog="FM" match-name="LEAGUE"/>
+  <table-filter match-catalog="FM" match-name="LEAGUETEAM"/>
+  <table-filter match-catalog="FM" match-name="MANAGER"/>
+  <table-filter match-catalog="FM" match-name="MODIFYCOUNT"/>
+  <table-filter match-catalog="FM" match-name="NEWS"/>
+  <table-filter match-catalog="FM" match-name="PLAYER"/>
+  <table-filter match-catalog="FM" match-name="PLAYERPERFORMANCE"/>
+  <table-filter match-catalog="FM" match-name="PLAYERSKILL"/>
+  <table-filter match-catalog="FM" match-name="TACTIC"/>
+  <table-filter match-catalog="FM" match-name="TEAM"/>
+  <table-filter match-catalog="FM" match-name="TEAMMANAGER"/>
+  <table-filter match-catalog="FM" match-name="TEAMPLAYER"/>
+</hibernate-reverse-engineering>

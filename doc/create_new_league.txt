@@ -1,0 +1,13 @@
++ Dont forget server triggers!
++ Player template and team template (where used = NULL) tables should not be empty!
++ Execute create league service : {"service" : "createLeague", "name" : "Super Leage", "country":"turkey"}.
+  This will,
+  - create a league
+  - create teams
+  - create players and tactics for the teams
++ Execute Initiate League Service : {"service" : "initiate", "leagueId" : 3}. 
+  This will,
+  - create a season
+  - league team records (LeagueTable)
+  - team player records (player stats)
+  - game records (fixture) 

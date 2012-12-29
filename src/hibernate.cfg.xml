@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/passnrun_db</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">1234</property>
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="current_session_context_class">thread</property>
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+<!-- C3P0 Stuff -->
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<property name="c3p0.acquire_increment">1</property> 
+		<property name="c3p0.idle_test_period">100</property> <!-- seconds --> 
+		<property name="c3p0.max_size">3</property>
+		<property name="c3p0.min_size">1</property>
+		<property name="c3p0.max_statements">0</property> 
+		<property name="c3p0.timeout">100</property> <!-- seconds --> 
+		<property name="c3p0.preferredTestQuery">select 1;</property>
+		
+<mapping resource="com/fm/dal/Ban.hbm.xml"/>			
+<mapping resource="com/fm/dal/PlayerPerformance.hbm.xml"/>
+<mapping resource="com/fm/dal/Finance.hbm.xml"/>			
+<mapping resource="com/fm/dal/PlayerSkill.hbm.xml"/>
+<mapping resource="com/fm/dal/Game.hbm.xml"/>			
+<mapping resource="com/fm/dal/PlayerTemplate.hbm.xml"/>
+<mapping resource="com/fm/dal/GameDetail.hbm.xml"/>		
+<mapping resource="com/fm/dal/Season.hbm.xml"/>
+<mapping resource="com/fm/dal/Injury.hbm.xml"/>			
+<mapping resource="com/fm/dal/Stadium.hbm.xml"/>
+<mapping resource="com/fm/dal/League.hbm.xml"/>			
+<mapping resource="com/fm/dal/Tactic.hbm.xml"/>
+<mapping resource="com/fm/dal/LeagueTeam.hbm.xml"/>		
+<mapping resource="com/fm/dal/TacticPlayer.hbm.xml"/>
+<mapping resource="com/fm/dal/Manager.hbm.xml"/>			
+<mapping resource="com/fm/dal/Team.hbm.xml"/>
+<mapping resource="com/fm/dal/ModifyCount.hbm.xml"/>		
+<mapping resource="com/fm/dal/TeamManager.hbm.xml"/>
+<mapping resource="com/fm/dal/News.hbm.xml"/>			
+<mapping resource="com/fm/dal/TeamPlayer.hbm.xml"/>
+<mapping resource="com/fm/dal/Player.hbm.xml"/>			
+<mapping resource="com/fm/dal/TeamTemplate.hbm.xml"/>
+		
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 24, 2011 11:03:12 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fm.dal.Game" table="GAME" catalog="passnrun_db">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="awayTeam" class="com.fm.dal.Team" fetch="select" lazy="false">
+            <column name="TEAM2" />
+        </many-to-one>
+        <many-to-one name="homeTeam" class="com.fm.dal.Team" fetch="select" lazy="false">
+            <column name="TEAM1" />
+        </many-to-one>
+        <property name="seasonId" type="java.lang.Integer">
+            <column name="SEASON_ID" />
+        </property>
+        <property name="leagueId" type="java.lang.Integer">
+            <column name="LEAGUE_ID" />
+        </property>
+        <property name="week" type="java.lang.Integer">
+            <column name="WEEK" />
+        </property>
+        <property name="score1" type="java.lang.Integer">
+            <column name="SCORE1" />
+        </property>
+        <property name="score2" type="java.lang.Integer">
+            <column name="SCORE2" />
+        </property>
+        <property name="attendance" type="java.lang.Integer">
+            <column name="ATTENDANCE" />
+        </property>
+        <property name="percentAtt" type="java.lang.Integer">
+            <column name="PERCENT_ATT" />
+        </property>
+        <property name="gameDate" type="timestamp">
+            <column name="GAME_DATE" length="0" />
+        </property>
+        <set name="gameDetails" table="GAME_DETAIL" inverse="true" lazy="true" fetch="select" cascade="none">
+            <key>
+                <column name="GAME_ID" />
+            </key>
+            <one-to-many class="com.fm.dal.GameDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

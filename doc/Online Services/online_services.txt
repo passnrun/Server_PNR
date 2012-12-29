@@ -1,0 +1,81 @@
+Online Integrations
+====================================================================================
+Mobile Device - Server Integrations will be JSON/HTTP.
+For each service, Mobile Device's will call Server URL with a JSONRequest.
+Each JSONRequests will consist of three parts:
+ + Service Name(String)
+ + Authentication(?)
+ + Data(Object)
+ 
+For simplicity, we will not use "Authentication" part for now.. 
+
+Server, will respond with a JSONResponse Object to each JSONRequest.
+A JSONResponse has two parts:
+ + Result(int)
+ + Data(Object)
+If the call is successful, result will be 0.
+Otherwise, an error code will be returned in Result field (any numeric value
+less than 0). In case of Error, Data field will have Error Message.
+
+Encoding for JSONRequest and JSONResponse will be UTF-8. 
+
+Register Manager
+====================================================================================
+Mobile Device will collect manager informations, and send it to server for
+registration. Then, Server will create a manager in database, and associate the
+manager with a team. So, JSONResponse will contain managerId, and teamId fields.
+
+Fields
+------------------------------------------------------------------------------------
+
+Input - JSONRequest:
+
+ + service : Fixed : "register"
+ + manager : Manager Object with following fields
+ 	- firstName : String, max length 64 chars.
+ 	- lastName : String, max length 64 chars.
+ 	- nationality : String, combo options will be shared
+ 	- language : String, combo options will be shared
+ 	- birthdate : Date in format : "ddMMyyyy"
+ 	- device : 'iphone' or 'android'
+ 	- deviceId : device id
+ 	
+Output - JSONResponse
+
+ + result : integer, possible values are:
+ 	. 0  : Success
+ + data : In case of success, Object with following fields
+ 	- managerId : Integer
+ 	- teamId : Integer
+ 	In case of error, will be String, error description
+ 	
+Sample 
+------------------------------------------------------------------------------------
+
+Register JSONRequest:
+{
+	"service" : "register",
+	"manager" : {
+		"firstName" : "Fatih",
+		"lastName" : "Terim",
+		"nationality" : "turkey",
+		"language" : "turkish",
+		"birthdate" : "22081982",
+		"device" : "iphone",
+		"deviceId" : "dmskfmdsjfnskhfdskfzbndshkfbsdhkfbs"
+	}
+}
+
+Register Response (Success):
+{
+	"result" : 0,
+	"data" : {
+		"managerId" : 912,
+		"teamId" : 1223
+	}
+}
+Register Response (Fail):
+{
+	"result" : -9,
+	"data" : "Manager exists with same name"
+}

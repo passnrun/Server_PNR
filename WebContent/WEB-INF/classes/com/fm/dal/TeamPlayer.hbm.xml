@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 24, 2011 11:03:12 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fm.dal.TeamPlayer" table="TEAM_PLAYER" catalog="passnrun_db">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="playerId" type="java.lang.Integer">
+            <column name="PLAYER_ID" />
+        </property>
+        <property name="teamId" type="java.lang.Integer">
+            <column name="TEAM_ID" />
+        </property>
+        <property name="seasonId" type="java.lang.Integer">
+            <column name="SEASON_ID" />
+        </property>
+        <property name="played" type="java.lang.Integer">
+            <column name="PLAYED" />
+        </property>
+        <property name="goals" type="java.lang.Integer">
+            <column name="GOALS" />
+        </property>
+        <property name="assists" type="java.lang.Integer">
+            <column name="ASSISTS" />
+        </property>
+        <property name="against" type="java.lang.Integer">
+            <column name="AGAINST" />
+        </property>
+        <property name="yellowCard" type="java.lang.Integer">
+            <column name="YELLOW_CARD" />
+        </property>
+        <property name="redCard" type="java.lang.Integer">
+            <column name="RED_CARD" />
+        </property>
+    </class>
+</hibernate-mapping>

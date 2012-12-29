@@ -1,0 +1,35 @@
+FM
+==============
+ Modules:
+--------------
+  + Game:
+    A simulation that takes two teams (Player[18]) as parameters.
+    Output is the game score, as well as the events of the game.
+    After the game is completed, stats of the Players will have been updated.
+  + Schedule
+    Each team belongs to a League, and League Fixture is drawn at the beginning of the season.
+    (Version 2) There is also Cup, and Friendly Games
+  + Transfers
+    Users can search for Players, and Make Bids.
+    (Version 2) Found players depends on the skills of Scouts
+    Users can view players of any Team and can make bids.
+    All bids of a player is listed to the user, and the user evaluates bid by accepting, or declining.
+  + Training
+    User sets training plans, and training affects the player stats.
+    (Version 2) This effect depends on the coach skills   
+  + Stadium & Sponsorship
+    Users can enhance the stadium, and can set ticket prices. 
+  + Wages & Contracts
+    All players have contacts, and users renew contacts anytime he wants.
+    If a players contact have expired, Player can join any team freely. 
+  + Finance:
+    All kind of transactions can only be done, if there is enough financial resources.
+    Otherwise the transaction is canceled. 
+  + News Feed:
+    During the game, many events are created, and these events are displayed to the users.
+    These news are either "NEW" (Unread), or "OLD" (Read).
+    - Game scores : When a game ends, Events are created for both Users, and when clicked, user directed to the Game Summary page 
+    - After a Fixture, or Cup Drawing, user is informed.
+    - Transfer Bids, and Bid Replies create events
+    - (Version 2) Coach can inform the User, about training performances of players.
+    - Contact Replies from Players are displayed as News

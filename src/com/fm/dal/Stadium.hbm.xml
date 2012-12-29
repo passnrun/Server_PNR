@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 24, 2011 11:03:12 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fm.dal.Stadium" table="STADIUM" catalog="passnrun_db">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="128" />
+        </property>
+        <property name="capacity" type="java.lang.Integer">
+            <column name="CAPACITY" />
+        </property>
+        <set name="teams" table="TEAM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="STADIUM_ID" />
+            </key>
+            <one-to-many class="com.fm.dal.Team" />
+        </set>
+    </class>
+</hibernate-mapping>

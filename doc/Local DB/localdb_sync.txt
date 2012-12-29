@@ -1,0 +1,245 @@
+Local DB Synchronization for Mobile Devices
+===========================================
+In order to decrease the load on servers, mobile devices keep some information
+on their local DB. These local DB is synchronized every time application is opened.
+
+Local DB Contains the following tables:
+CURRENT 		: Used for sync process.
+TEAM 			: Keeps the teams in the same league with manager
+FINANCE 		: Finance records for the season
+LEAGUE_TABLE	: Pretty obvious by its name. Updated by triggers on FIXTURE table.
+FIXTURE			: Fixture, and game results.. Updated by sync process as games are played.
+NEWS			: Manager's inbox
+NEWS_BODY		: Mail Messages.. 
+TACTIC			:
+TACTIC_PLAYER	:	
+PLAYER			: These three will be used in my tactics view. 
+
+CURRENT Table keeps ManagerId, TeamId, LeagueId and SeasonId the player is currently playing.
+This table is the main one used in sync process.
+Empty table means the application doesn't have a registered manager yet,
+so user should be redirected to register page in order to register and fill this table.
+
+The sync process starts with sending managerId to server(1), and server response with the following fields: 
+teamId, leagueId, seasonId, max_games, max_news, max_finance
+
++ If teamId is different, that means the manager is managing another team.. this functionality is not in plan yet.
++ If leagueId or seasonId is different, it means a new season is started.. in this case the following tables should be cleared:
+	- TEAM
+	- LEAGUE_TABLE
+	- FINANCE
+	- FIXTURE
+  (NEWS and TACTIC related tables should remain as it is)
+  Then, team list should be requested from server using : leagueId and seasonId(2)
+  Once the teams are inserted, LEAGUE_TEAM records are created by triggers.
+  IF MAX_GAMES value retrieved from server is -1, it means FIXTURE is not ready yet..
+  Otherwise, also Fixture should be requested.(3)
++ IF max_games is different, games results should be requested using old max_games value(4)
++ IF max_news is different, news should be requested using old max_news value(5)
++ IF max_finance is different, finance records should be requested using old max_finance value.(6) 
+
+Service Details
+=============================================
+(1) SyncService
+---------------------------------------------
+After registration, managerId should be stored in CURRENT table of Mobile Device.
+fAs described above, SyncService will be the first service should be called before Local DB Sync.
+
+Input Parameters
+---------------------------------------------
+ + service : Fixed : "sync"
+ + managerId : Id of manager, from Current Table
+
+Output Parameters
+---------------------------------------------
+ + managerId	: Manager Id (will be the same as input)
+ + teamId	: Current Team manager is playing
+ + leagueId	: Current League manager is playing
+ + seasonId	: Current Season manager is playing
+ + maxNews	: Max News Record ID in Server
+ + maxGames	: Max Games Record Id in Server
+ + maxFinance	: Max Finance Record Id in Server
+
+Sample Input
+---------------------------------------------
+{
+  "managerId" : 12,
+  "service" : "sync"
+}	
+
+Sample Output
+---------------------------------------------
+{
+	"result" : 0,
+	"data" : {
+	  "managerId" : 12,
+  	  "teamId" : 22,
+  	  "leagueId" : 2,
+  	  "seasonId" : 3,
+  	  "maxNews" : 22,
+  	  "maxGames" : 22,
+    	  "maxFinance" : 22
+	}
+}	
+
+(2) TeamListService
+---------------------------------------------
+In case of a new league or season, mobile device should update team list using this service
+
+Input Parameters
+---------------------------------------------
+ + service : Fixed : "teamList"
+ + leagueId : Id current league
+
+Output Parameters
+---------------------------------------------
+ + return	: 0, in case of  success
+ + data		: List of teams
+
+Team Fields:
+ + id 		: Team Id
+ + name 	: Name
+ + color1 	: HexCode for Team Color1
+ + color2	: HexCode for Team Color2
+ + currentLeague: League Id
+ + manager	: Name of Manager
+ + stadium	: Name of Stadium
+ 
+
+Sample Input
+---------------------------------------------
+{
+  "leagueId" : 12,
+  "service" : "teamList"
+}	
+
+Sample Output
+---------------------------------------------
+{
+	"result" : 0,
+	"data" : [
+		{
+		  "id" : 12,
+		  "name" :  "text",
+		  "color1" :  "text",
+		  "color2"	: "text",
+		  "currentLeague": 12,
+		  "manager"	: "text",
+		  "stadium"	: "text"
+		},
+		{
+		  "id" : 13,
+		  "name" :  "text",
+		  "color1" :  "text",
+		  "color2"	: "text",
+		  "currentLeague": 13,
+		  "manager"	: "text",
+		  "stadium"	: "text"
+		}
+	]
+}	
+
+(3) GameListService
+---------------------------------------------
+After fixture draw for league, all games for the league should be inserted into FIXTURE table in mobile device
+
+Input Parameters
+---------------------------------------------
+ + service : Fixed : "fixture"
+ + leagueId : Id current league
+ + seasonId : Id current season
+
+Output Parameters
+---------------------------------------------
+ + return	: 0, in case of  success
+ + data		: List of games
+
+Game Fields:
+ + id 		: Game Id
+ + team1 	: Home Team Id
+ + team2	: Away Team Id
+ + season	: Season Id
+ + week		: week no
+ + date		: Date in format : "ddMMyyyy"
+
+Sample Input
+---------------------------------------------
+{
+  "leagueId" : 12,
+  "seasonId" : 12,
+  "service" : "fixture"
+}	
+
+Sample Output
+---------------------------------------------
+{
+	"result" : 0,
+	"data" : [
+		{
+		  "id" : 12,
+		  "team1" : 12,
+		  "team2" : 12,
+		  "season" : 12,
+		  "week" : 12,
+		  "date" : "22122011"
+		},
+		{
+		  "id" : 12,
+		  "team1" : 12,
+		  "team2" : 12,
+		  "season" : 12,
+		  "week" : 12,
+		  "date" : "22122011"
+		}
+	]
+}	
+  
+(4) GameResultService
+---------------------------------------------
+After games are played, results are should be reflected to mobile device.
+Then, for each Id received in output, record in FIXTURE Table should be updated.
+
+Input Parameters
+---------------------------------------------
+ + service : Fixed : "gameResult"
+ + managerId : Id current manager
+ + minId : value in CURRENT table's MAX_GAMES column
+
+Output Parameters
+---------------------------------------------
+ + return	: 0, in case of  success
+ + data		: List of game results
+
+Game Result Fields:
+ + id 			: Game Id
+ + score1 		: Home Team Score
+ + score2		: Away Team Score
+ + attendance	: Attendance
+
+Sample Input
+---------------------------------------------
+{
+  "minId" : 12,
+  "managerId" : 12,
+  "service" : "gameResult"
+}	
+
+Sample Output
+---------------------------------------------
+{
+	"result" : 0,
+	"data" : [
+		{
+		  "id" : 12,
+		  "score1" : 2,
+		  "score2" : 1,
+		  "attendance" : 12000
+		},
+		{
+		  "id" : 12,
+		  "score1" : 2,
+		  "score2" : 1,
+		  "attendance" : 12000
+		}
+	]
+}  

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 24, 2011 11:03:12 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fm.dal.PlayerTemplate" table="PLAYER_TEMPLATE" catalog="passnrun_db">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="country" type="string">
+            <column name="COUNTRY" length="32" />
+        </property>
+        <property name="name" type="string">
+            <column name="NAME" length="32" />
+        </property>
+        <property name="surname" type="string">
+            <column name="SURNAME" length="32" />
+        </property>
+    </class>
+</hibernate-mapping>

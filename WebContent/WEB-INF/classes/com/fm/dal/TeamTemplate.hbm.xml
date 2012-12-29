@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 24, 2011 11:03:12 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fm.dal.TeamTemplate" table="TEAM_TEMPLATE" catalog="passnrun_db">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="team" type="string">
+            <column name="TEAM" length="32" />
+        </property>
+        <property name="country" type="string">
+            <column name="COUNTRY" length="32" />
+        </property>
+        <property name="color1" type="string">
+            <column name="COLOR1" length="2" />
+        </property>
+        <property name="color2" type="string">
+            <column name="COLOR2" length="8" />
+        </property>
+        <property name="used" type="java.lang.Integer">
+            <column name="USED" />
+        </property>
+    </class>
+</hibernate-mapping>

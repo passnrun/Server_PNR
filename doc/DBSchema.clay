@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clay-model clay-version="2.0.1">
+<database-model author="" begin-script="" end-script="" id="4d5bcb:1327e8fda13:-8000" name="DBSchema" sql-dialect-id="jp.azzurri.clay.dialect.MySQL_5_0_Dialect" version="1.0">
+<schema-list>
+<schema id="4d5bcb:1327e8fda13:-7ffd" name="passnrun_db">
+<table-list>
+<table id="4d5bcb:1327e8fda13:-7fff" name="MANAGER">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ffa" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="64" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ff9" mandatory="false" name="FIRSTNAME">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="64" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ff8" mandatory="false" name="LASTNAME">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="64" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ff7" mandatory="false" name="NATIONALITY">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="64" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ff6" mandatory="false" name="LANGUAGE">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ff5" mandatory="false" name="BIRTHDATE">
+<data-type name="DATE" selected-variant-pattern="DATE"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ff4" mandatory="false" name="REGISTER_DATE">
+<data-type name="DATETIME" selected-variant-pattern="DATETIME"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="4d5bcb:1327e8fda13:-7fbf" mandatory="false" name="CURRENT_TEAM">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="16" decimal-digits="0" default-value="" id="7bff713e:133f4dcce4e:-7fba" mandatory="false" name="DEVICE">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="64" decimal-digits="0" default-value="" id="7bff713e:133f4dcce4e:-7fb9" mandatory="false" name="DEVICE_ID">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7ffe" name="PK_MANAGER">
+<primary-key-column name="ID"/>
+</primary-key>
+</table>
+<table id="4d5bcb:1327e8fda13:-7ff3" name="NEWS">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7fef" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7fee" mandatory="true" name="MANAGER_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7fed" mandatory="false" name="RECEIVE_DATE">
+<data-type name="DATETIME" selected-variant-pattern="DATETIME"/>
+</column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7fec" mandatory="false" name="SUBJECT">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7feb" mandatory="false" name="MUST_ANSWER">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7fea" mandatory="false" name="BODY">
+<data-type name="TEXT" selected-variant-pattern="TEXT"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7ff2" name="PK_NEWS">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="4d5bcb:1327e8fda13:-7fd0" name="FK_NEWS_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_MANAGER" referenced-table="MANAGER" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="MANAGER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7fbe" name="TEAM_MANAGER">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7fba" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7fb9" mandatory="true" name="MANAGER_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7fb8" mandatory="true" name="TEAM_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7fb7" mandatory="true" name="SEASON_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fac" mandatory="false" name="PLAYED">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fab" mandatory="false" name="WIN">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7faa" mandatory="false" name="DRAW">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fa9" mandatory="false" name="LOSS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7fbd" name="PK_TEAM_MANAGER">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="4d5bcb:1327e8fda13:-7f80" name="FK_TEAMMANAGER_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_MANAGER" referenced-table="MANAGER" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="MANAGER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key id="4d5bcb:1327e8fda13:-7f48" name="FK_TEAMMANAGER_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TEAM" referenced-table="TEAM" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="TEAM_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7f73" name="TEAM">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7f6f" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="64" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7f6e" mandatory="true" name="NAME">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="16" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7f6d" mandatory="false" name="COLOR1">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="16" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7f6c" mandatory="false" name="COLOR2">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="28a66427:133e96f933d:-7f74" mandatory="false" name="CURRENT_LEAGUE">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7f3b" mandatory="false" name="CURRENT_MANAGER">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fb8" mandatory="false" name="STADIUM_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7f72" name="PK_TEAM">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="44f16ddc:133c5926af2:-7f97" name="FK_TEAM_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_STADIUM" referenced-table="STADIUM" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="STADIUM_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7eee" name="LEAGUE_TEAM">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7eea" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ee9" mandatory="false" name="LEAGUE_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ee8" mandatory="false" name="TEAM_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ee7" mandatory="false" name="SEASON_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ee4" mandatory="false" name="PLAYED">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ee3" mandatory="false" name="WON">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ee2" mandatory="false" name="LOST">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ee1" mandatory="false" name="DRAW">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7edf" mandatory="false" name="FOR_GOAL">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ede" mandatory="false" name="AGAINST_GOAL">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7edd" mandatory="false" name="POINTS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7eed" name="PK_LEAGUE_TEAM">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="19ca1fb:1328285252a:-7f09" name="FK_LEAGUETEAM_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TEAM" referenced-table="TEAM" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="TEAM_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key id="19ca1fb:1328285252a:-7eda" name="FK_LEAGUETEAM_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_LEAGUE" referenced-table="LEAGUE" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="LEAGUE_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7edc" name="LEAGUE">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ed8" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="16" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ed7" mandatory="false" name="NAME">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fcc" mandatory="false" name="LEVEL">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fcb" mandatory="false" name="SIZE">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fca" mandatory="false" name="RELEGATIONS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fc9" mandatory="false" name="PROMOTIONS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fc8" mandatory="false" name="PLAYOFFS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fc7" mandatory="false" name="PARENT_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="187fd42:13b9a932798:-7f6e" mandatory="false" name="STATUS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7edb" name="PK_LEAGUE">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="5c8efc3c:133cfb5276c:-7ec2" name="FK_LEAGUE_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_LEAGUE" referenced-table="LEAGUE" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="PARENT_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7ed6" name="GAME">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ed2" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ed1" mandatory="false" name="TEAM1">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ed0" mandatory="false" name="TEAM2">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ecf" mandatory="false" name="SEASON_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="18cc659:13bdd36e5d3:-7f74" mandatory="false" name="LEAGUE_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ece" mandatory="false" name="WEEK">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ecd" mandatory="false" name="SCORE1">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ecc" mandatory="false" name="SCORE2">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1c230bf:13286c0983c:-7fcb" mandatory="false" name="ATTENDANCE">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1c230bf:13286c0983c:-7fc8" mandatory="false" name="PERCENT_ATT">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="28a66427:133e96f933d:-7f2d" mandatory="false" name="GAME_DATE">
+<data-type name="DATETIME" selected-variant-pattern="DATETIME"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7ed5" name="PK_GAME">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="5c8efc3c:133cfb5276c:-7ea3" name="FK_GAME_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TEAM" referenced-table="TEAM" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="TEAM1" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key id="5c8efc3c:133cfb5276c:-7cf6" name="FK_GAME_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TEAM" referenced-table="TEAM" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="TEAM2" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key id="18cc659:13bdd36e5d3:-7efe" name="FK_GAME_3" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_LEAGUE" referenced-table="LEAGUE" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="LEAGUE_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7ecb" name="GAME_DETAIL">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ec7" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="19818fe:13b3db9b835:-7fb9" mandatory="false" name="ACTION">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ec5" mandatory="false" name="MINUTE">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ec6" mandatory="false" name="GAME_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="19818fe:13b3db9b835:-7fba" mandatory="false" name="TEAM">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="64" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ec4" mandatory="false" name="PLAYER">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="149a0ed:132abc20547:-7f61" mandatory="false" name="LOG_LEVEL">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="187fd42:13b9a932798:-7fba" mandatory="false" name="LOG_MESSAGE">
+<data-type name="TEXT" selected-variant-pattern="TEXT"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7eca" name="PK_GAME_DETAIL">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="19ca1fb:1328285252a:-7db4" name="FK_GAMEDETAIL_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_GAME" referenced-table="GAME" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="GAME_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7ec3" name="TACTIC">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ebf" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ebe" mandatory="false" name="TEAM_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ebd" mandatory="false" name="FORMATION">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7ec2" name="PK_TACTIC">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="19ca1fb:1328285252a:-7d94" name="FK_TACTIC_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TEAM" referenced-table="TEAM" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="TEAM_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7ea8" name="PLAYER">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ea4" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="64" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ea3" mandatory="false" name="NAME">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="64" decimal-digits="0" default-value="" id="9d3af:13be29fc2d7:-7fb8" mandatory="false" name="SURNAME">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="16" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ea2" mandatory="false" name="POSITION">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7ea1" mandatory="false" name="BIRTHDATE">
+<data-type name="DATE" selected-variant-pattern="DATE"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="4d5bcb:1327e8fda13:-7ea0" mandatory="false" name="CURRENT_TEAM">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1a04a2a:132a4e38080:-7fcd" mandatory="false" name="FITNESS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1a04a2a:132a4e38080:-7fcc" mandatory="false" name="MORALE">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fbe" mandatory="false" name="QUALITY">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="16" decimal-digits="0" default-value="" id="1c4bfd2:13b71109a88:-7f74" mandatory="false" name="LATEST_FORM">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7ea7" name="PK_PLAYER">
+<primary-key-column name="ID"/>
+</primary-key>
+</table>
+<table id="4d5bcb:1327e8fda13:-7e9f" name="PLAYER_SKILL">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e99" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e97" mandatory="false" name="HANDLING">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e96" mandatory="false" name="TACKLING">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e95" mandatory="false" name="PASSING">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e94" mandatory="false" name="CREATIVITY">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e93" mandatory="false" name="POSITIONING">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e92" mandatory="false" name="TEAMWORK">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e91" mandatory="false" name="HEADING">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e90" mandatory="false" name="SHOOTING">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="149a0ed:132abc20547:-7f5e" mandatory="false" name="DRIBBLING">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="149a0ed:132abc20547:-7f29" mandatory="false" name="REFLEXES">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fc9" mandatory="false" name="FINISHING">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fc8" mandatory="false" name="CROSSING">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fc7" mandatory="false" name="TECHNIQUE">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fc6" mandatory="false" name="FIRST_TOUCH">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fc5" mandatory="false" name="COMPOSURE">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fc4" mandatory="false" name="AGILITY">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fc3" mandatory="false" name="ACCELERATION">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fc2" mandatory="false" name="STAMINA">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fc1" mandatory="false" name="STRENGTH">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7e9e" name="PK_PLAYER_SKILL">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="19ca1fb:1328285252a:-7e92" name="FK_PLAYERSKILL_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_PLAYER" referenced-table="PLAYER" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="1" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7e8f" name="BAN">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e8b" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e8a" mandatory="false" name="PLAYER_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e89" mandatory="false" name="GAME_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e88" mandatory="false" name="BANNED_FOR">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e87" mandatory="false" name="BAN_PAYED">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7e8e" name="PK_BAN">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="19ca1fb:1328285252a:-7e77" name="FK_BAN_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_PLAYER" referenced-table="PLAYER" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="PLAYER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key id="5c8efc3c:133cfb5276c:-7e2e" name="FK_BAN_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_GAME" referenced-table="GAME" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="GAME_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7e86" name="INJURY">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e82" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e81" mandatory="false" name="PLAYER_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e80" mandatory="false" name="GAME_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e7f" mandatory="false" name="INJURED_FOR">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="5c8efc3c:133cfb5276c:-7de3" mandatory="false" name="INJURED_PAYED">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7e85" name="PK_INJURY">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="19ca1fb:1328285252a:-7e51" name="FK_INJURY_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_PLAYER" referenced-table="PLAYER" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="PLAYER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key id="5c8efc3c:133cfb5276c:-7e49" name="FK_INJURY_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_GAME" referenced-table="GAME" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="GAME_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7e7e" name="PLAYER_PERFORMANCE">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e7a" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e79" mandatory="false" name="PLAYER_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e78" mandatory="false" name="GAME_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4ae121e:133f8f675d4:-7fb4" mandatory="false" name="SEASON_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fb9" mandatory="false" name="MINS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fbb" mandatory="false" name="ASSIST">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="466de78a:133cd138102:-7fba" mandatory="false" name="GOAL">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e77" mandatory="false" name="FORM">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="18cc659:13bdd36e5d3:-7e95" mandatory="false" name="MORALE">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7e7d" name="PK_PLAYER_PERFORMANCE">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="19ca1fb:1328285252a:-7e03" name="FK_PLAYERPERFORMANCE_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_PLAYER" referenced-table="PLAYER" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="PLAYER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key id="19ca1fb:1328285252a:-7dcc" name="FK_PLAYERPERFORMANCE_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_GAME" referenced-table="GAME" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="GAME_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7e76" name="MODIFY_COUNT">
+<column-list>
+<column auto-increment="true" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e72" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e71" mandatory="false" name="MANAGER_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e6f" mandatory="false" name="TEAM_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e70" mandatory="false" name="LEAGUE_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="3dae3050:1341d403539:-7fa8" mandatory="false" name="SEASON_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="3dae3050:1341d403539:-7fa7" mandatory="false" name="MAX_NEWS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="3dae3050:1341d403539:-7fa6" mandatory="false" name="MAX_GAMES">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="3dae3050:1341d403539:-7fa5" mandatory="false" name="MAX_FINANCE">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7e75" name="PK_MODIFY_COUNT">
+<primary-key-column name="ID"/>
+</primary-key>
+</table>
+<table id="4d5bcb:1327e8fda13:-7e6e" name="TEAM_PLAYER">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e6a" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e69" mandatory="false" name="PLAYER_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e68" mandatory="false" name="TEAM_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e67" mandatory="false" name="SEASON_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e66" mandatory="false" name="PLAYED">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e65" mandatory="false" name="GOALS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e64" mandatory="false" name="ASSISTS">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e63" mandatory="false" name="AGAINST">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e62" mandatory="false" name="YELLOW_CARD">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e61" mandatory="false" name="RED_CARD">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4ae121e:133f8f675d4:-7fb7" mandatory="false" name="AVG_FORM">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7e6d" name="PK_TEAM_PLAYER">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="19ca1fb:1328285252a:-7fc8" name="FK_TEAMPLAYER_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TEAM" referenced-table="TEAM" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="TEAM_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key id="19ca1fb:1328285252a:-7f35" name="FK_TEAMPLAYER_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_PLAYER" referenced-table="PLAYER" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="PLAYER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="4d5bcb:1327e8fda13:-7e60" name="FINANCE">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e5c" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e5b" mandatory="false" name="TEAM_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e5a" mandatory="false" name="SEASON_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e59" mandatory="false" name="WEEK">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e58" mandatory="false" name="RECTYPE">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7e57" mandatory="false" name="AMOUNT">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="4d5bcb:1327e8fda13:-7e5f" name="PK_FINANCE">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="19ca1fb:1328285252a:-7ebc" name="FK_FINANCE_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TEAM" referenced-table="TEAM" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="TEAM_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="149a0ed:132abc20547:-7fcf" name="TACTIC_PLAYER">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="149a0ed:132abc20547:-7fca" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="149a0ed:132abc20547:-7fc9" mandatory="false" name="TACTIC_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="149a0ed:132abc20547:-7fc8" mandatory="false" name="PLAYER_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="16" decimal-digits="0" default-value="" id="149a0ed:132abc20547:-7fc7" mandatory="false" name="POSITION">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+</column-list>
+<primary-key id="149a0ed:132abc20547:-7fce" name="PK_TACTIC_PLAYER">
+<primary-key-column name="ID"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="5c8efc3c:133cfb5276c:-7cab" name="FK_TACTIC_PLAYER_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TACTIC" referenced-table="TACTIC" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="TACTIC_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key id="5c8efc3c:133cfb5276c:-7e0e" name="FK_TACTICPLAYER_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_PLAYER" referenced-table="PLAYER" referenced-table-schema="passnrun_db" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="PLAYER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="44f16ddc:133c5926af2:-7fc3" name="STADIUM">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fbf" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fbe" mandatory="false" name="NAME">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fbd" mandatory="false" name="CAPACITY">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="44f16ddc:133c5926af2:-7fc2" name="PK_STADIUM">
+<primary-key-column name="ID"/>
+</primary-key>
+</table>
+<table id="5c8efc3c:133cfb5276c:-7fcb" name="TEAM_TEMPLATE">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="5c8efc3c:133cfb5276c:-7fc7" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="32" decimal-digits="0" default-value="" id="5c8efc3c:133cfb5276c:-7fc6" mandatory="false" name="TEAM">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="32" decimal-digits="0" default-value="" id="5c8efc3c:133cfb5276c:-7fc5" mandatory="false" name="COUNTRY">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="8" decimal-digits="0" default-value="" id="10c6431:133d498ee8f:-7fb1" mandatory="false" name="COLOR1">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="8" decimal-digits="0" default-value="" id="10c6431:133d498ee8f:-7fb0" mandatory="false" name="COLOR2">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4c232b05:133da0748c8:-7f70" mandatory="false" name="USED">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="5c8efc3c:133cfb5276c:-7fca" name="PK_TEAM_TEMPLATE">
+<primary-key-column name="ID"/>
+</primary-key>
+</table>
+<table id="5c8efc3c:133cfb5276c:-7fc2" name="PLAYER_TEMPLATE">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="5c8efc3c:133cfb5276c:-7fbe" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="32" decimal-digits="0" default-value="" id="5c8efc3c:133cfb5276c:-7fbd" mandatory="false" name="COUNTRY">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="32" decimal-digits="0" default-value="" id="5c8efc3c:133cfb5276c:-7fbc" mandatory="false" name="NAME">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="32" decimal-digits="0" default-value="" id="5c8efc3c:133cfb5276c:-7fbb" mandatory="false" name="SURNAME">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+</column-list>
+<primary-key id="5c8efc3c:133cfb5276c:-7fc1" name="PK_PLAYER_TEMPLATE">
+<primary-key-column name="ID"/>
+</primary-key>
+</table>
+<table id="5c8efc3c:133cfb5276c:-7e02" name="SEASON">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="5c8efc3c:133cfb5276c:-7dfe" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="5c8efc3c:133cfb5276c:-7e01" name="PK_SEASON">
+<primary-key-column name="ID"/>
+</primary-key>
+</table>
+</table-list>
+</schema>
+</schema-list>
+</database-model>
+<diagram>
+<table-figure refid="4d5bcb:1327e8fda13:-7fff" x="7" y="129"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7ff3" x="6" y="16"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7fbe" x="220" y="146"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7f73" x="197" y="319"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7eee" x="227" y="426"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7edc" x="379" y="440"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7ed6" x="504" y="8"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7ecb" x="263" y="15"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7ec3" x="6" y="421"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7ea8" x="575" y="170"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7e9f" x="581" y="324"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7e8f" x="791" y="227"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7e86" x="787" y="139"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7e7e" x="775" y="14"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7e76" x="147" y="15"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7e6e" x="376" y="142"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7e60" x="7" y="323"/>
+<table-figure refid="149a0ed:132abc20547:-7fcf" x="3" y="508"/>
+<table-figure height="57" refid="44f16ddc:133c5926af2:-7fc3" width="84" x="7" y="262"/>
+<table-figure refid="5c8efc3c:133cfb5276c:-7fcb" x="470" y="289"/>
+<table-figure refid="5c8efc3c:133cfb5276c:-7fc2" x="473" y="376"/>
+<table-figure refid="5c8efc3c:133cfb5276c:-7e02" x="755" y="342"/>
+</diagram>
+</clay-model>

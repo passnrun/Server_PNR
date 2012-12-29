@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 24, 2011 11:03:12 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fm.dal.LeagueTeam" table="LEAGUE_TEAM" catalog="passnrun_db">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="leagueId" type="java.lang.Integer">
+            <column name="LEAGUE_ID" />
+        </property>
+        <property name="teamId" type="java.lang.Integer">
+            <column name="TEAM_ID" />
+        </property>
+        <property name="seasonId" type="java.lang.Integer">
+            <column name="SEASON_ID" />
+        </property>
+        <property name="played" type="java.lang.Integer">
+            <column name="PLAYED" />
+        </property>
+        <property name="won" type="java.lang.Integer">
+            <column name="WON" />
+        </property>
+        <property name="lost" type="java.lang.Integer">
+            <column name="LOST" />
+        </property>
+        <property name="draw" type="java.lang.Integer">
+            <column name="DRAW" />
+        </property>
+        <property name="forGoal" type="java.lang.Integer">
+            <column name="FOR_GOAL" />
+        </property>
+        <property name="againstGoal" type="java.lang.Integer">
+            <column name="AGAINST_GOAL" />
+        </property>
+        <property name="points" type="java.lang.Integer">
+            <column name="POINTS" />
+        </property>
+    </class>
+</hibernate-mapping>

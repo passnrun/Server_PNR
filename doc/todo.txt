@@ -1,0 +1,36 @@
++ Play Games on Server
+	+ Get squad from tactics..
+	+ If a player is not available, auto select another one
+	+ create a server job to play all the games
+	+ create player_performance records after each game
++ Mobile Fixture View
++ Mobile League Table View
++ Mobile Game Result View
++ Mobile Tactic Update
+-- News on Server
+-- Mobile News View
+-- Mobile Team View
+-- Mobile Player View
+-- Finances on Server
+-- Mobile Finance View
+-- Transfer
+
+Before League Starts
+====================
++ Player Morale
++ Player Fitness
++ Calculate Attandance
+
+First League
+===================
++ Onur
++ Ali
++ Oral
++ Bulent
++ Giovanni
++ Gianluca
++ Padulano
++ Avenali
++ Tomasso
+
+

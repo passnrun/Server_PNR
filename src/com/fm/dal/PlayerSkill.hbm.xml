@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 24, 2011 11:03:12 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fm.dal.PlayerSkill" table="PLAYER_SKILL" catalog="passnrun_db">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="foreign">
+                <param name="property">player</param>
+            </generator>
+        </id>
+        <one-to-one name="player" class="com.fm.dal.Player" constrained="true"></one-to-one>
+        <property name="handling" type="java.lang.Integer">
+            <column name="HANDLING" />
+        </property>
+        <property name="tackling" type="java.lang.Integer">
+            <column name="TACKLING" />
+        </property>
+        <property name="passing" type="java.lang.Integer">
+            <column name="PASSING" />
+        </property>
+        <property name="creativity" type="java.lang.Integer">
+            <column name="CREATIVITY" />
+        </property>
+        <property name="positioning" type="java.lang.Integer">
+            <column name="POSITIONING" />
+        </property>
+        <property name="teamwork" type="java.lang.Integer">
+            <column name="TEAMWORK" />
+        </property>
+        <property name="heading" type="java.lang.Integer">
+            <column name="HEADING" />
+        </property>
+        <property name="shooting" type="java.lang.Integer">
+            <column name="SHOOTING" />
+        </property>
+        <property name="dribbling" type="java.lang.Integer">
+            <column name="DRIBBLING" />
+        </property>
+        <property name="reflexes" type="java.lang.Integer">
+            <column name="REFLEXES" />
+        </property>
+        <property name="finishing" type="java.lang.Integer">
+            <column name="FINISHING" />
+        </property>
+        <property name="crossing" type="java.lang.Integer">
+            <column name="CROSSING" />
+        </property>
+        <property name="technique" type="java.lang.Integer">
+            <column name="TECHNIQUE" />
+        </property>
+        <property name="firstTouch" type="java.lang.Integer">
+            <column name="FIRST_TOUCH" />
+        </property>
+        <property name="composure" type="java.lang.Integer">
+            <column name="COMPOSURE" />
+        </property>
+        <property name="agility" type="java.lang.Integer">
+            <column name="AGILITY" />
+        </property>
+        <property name="acceleration" type="java.lang.Integer">
+            <column name="ACCELERATION" />
+        </property>
+        <property name="stamina" type="java.lang.Integer">
+            <column name="STAMINA" />
+        </property>
+        <property name="strength" type="java.lang.Integer">
+            <column name="STRENGTH" />
+        </property>
+    </class>
+</hibernate-mapping>

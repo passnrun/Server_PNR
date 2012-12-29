@@ -1,0 +1,18 @@
+<project name="passnrun" default="main" basedir=".">
+    <property name="war.file" value="passnrun" />
+    <property name="war.file.name" value="${war.file}.war" />
+    <property name="deploy.dir" value="/Users/onur/Developer/apache-tomcat-6.0.33/webapps" />
+
+	<target name="war">
+        <war warfile="${war.file.name}" webxml="./WEB-INF/web.xml">
+            <webinf dir="./WEB-INF" includes="**/*.jar, tiles.xml"/>
+            <classes dir="./WEB-INF/classes" includes="**/*.*"/>
+        </war>
+    </target>
+    <target name="deploy">
+        <copy todir="${deploy.dir}">
+            <fileset dir="./" includes="${war.file.name}" />
+        </copy>
+    </target>
+    <target name="main" depends="war, deploy" />
+</project>

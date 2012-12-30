@@ -46,12 +46,13 @@ public class TacticsManager {
 			}
 		}
 		List<TacticPlayer> subs = new ArrayList<TacticPlayer>();
+		int substituteIndex = 0;
 		for (Iterator iterator = playerList.iterator(); iterator.hasNext() && subs.size() < 8;) {
 			Player p = (Player) iterator.next();
 			TacticPlayer tp = new TacticPlayer();
 			tp.setPlayerId(p.getId());
 			tp.setPlayer(p);
-			tp.setPosition(p.getPosition());
+			tp.setPosition("S("+ (++substituteIndex)+")");
 			subs.add(tp);
 		}
 		tactic.setTeamId(teamId);

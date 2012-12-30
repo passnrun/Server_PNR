@@ -26,6 +26,7 @@ public class JSTacticPlayer extends TacticPlayer implements JSON, Comparable<JST
 		return sb.toString();
 	}
 
+
 	@Override
 	public int compareTo(JSTacticPlayer tp) {
 		Position p1 = new Position(getPosition());

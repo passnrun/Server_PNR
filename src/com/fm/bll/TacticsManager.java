@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
+
+import org.apache.commons.digester.RegexMatcher;
 
 import com.fm.dal.Player;
 import com.fm.dal.Tactic;
@@ -18,7 +21,7 @@ import com.fm.engine.obj.PlayerComperator;
 import com.fm.obj.Position;
 
 public class TacticsManager {
-	
+
 	public static Tactic getTeamTactic(int teamId) {
 		PlayerDAO pDao = new PlayerDAO();
 		TacticDAO tDao = new TacticDAO();
@@ -38,7 +41,7 @@ public class TacticsManager {
 			while (!found && ++i < playerList.size()){
 				if (tacticPlayer.getPlayerId() == playerList.get(i).getId()){
 					tacticPlayer.setPlayer(playerList.remove(i));
-					if (tacticPlayer.getPosition().charAt(0) == 'S')
+					if (tacticPlayer.getPosition().matches("[S]\\d"))
 						subs.add(tacticPlayer);
 					else if ("R".equals(tacticPlayer.getPosition()))
 						reserves.add(tacticPlayer);
@@ -86,10 +89,9 @@ public class TacticsManager {
 			tp.setTacticId(tactic.getId());
 			dao.save(tp);
 		}
-		for (Iterator iterator = playerList.iterator(); iterator.hasNext();) {
-			Player reserve = (Player) iterator.next();
+		while(playerList.size() > 0){
+			Player reserve = (Player) playerList.remove(0);
 			TacticPlayer tp = new TacticPlayer();
-			playerList.remove(reserve);
 			tp.setPlayerId(reserve.getId());
 			tp.setPosition("R");
 			tp.setTacticId(tactic.getId());

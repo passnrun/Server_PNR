@@ -163,11 +163,7 @@ public class GameSimulatorJob implements Job {
 		return points;
 	}
 	public static void main(String[] args) throws JobExecutionException {
-//		GameSimulatorJob job = new GameSimulatorJob();
-//		job.execute(null);
-		float fl = 1.233333f;
-		String format = "%(.0f";
-		String result = String.format(format, fl);
-		System.out.println(result);
+		GameSimulatorJob job = new GameSimulatorJob();
+		job.execute(null);
 	}
 }

@@ -23,7 +23,7 @@ public class FixtureService {
 		GameDAO dao = new GameDAO();
 		List<Game> gameList = dao.getFixture(Integer.parseInt((String)map.get("leagueId")), Integer.parseInt((String)map.get("seasonId")));
 		if (gameList == null || gameList.size() == 0)
-			return new JSONResponse(JSONResponse.ERROR_NO_GAME_FOUND, new JSONString("No Game Found for League["+(Integer)map.get("leagueId")+"] and Season["+(Integer)map.get("seasonId")+"]"));
+			return new JSONResponse(JSONResponse.ERROR_NO_GAME_FOUND, new JSONString("No Game Found for League["+map.get("leagueId")+"] and Season["+map.get("seasonId")+"]"));
 		JSList jstList = new JSList();
 		jstList.setList(new ArrayList<JSON>());
 		for (Iterator<Game> iterator = gameList.iterator(); iterator.hasNext();) {

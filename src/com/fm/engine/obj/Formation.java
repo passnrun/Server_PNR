@@ -28,7 +28,7 @@ public class Formation {
 	public static Formation getInstance(int formation){
 		String code = formation_codes[formation];
 		String[] positionCodes = code.split(",");
-		Position[] positions = new Position[11];
+		Position[] positions = new Position[positionCodes.length];
 		for (int i = 0; i < positionCodes.length; i++) 
 			positions[i] = new Position(positionCodes[i]);
 		return new Formation(positions);

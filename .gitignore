@@ -16,3 +16,7 @@
 .settings/org.eclipse.wst.jsdt.ui.superType.name
 
 .settings/org.eclipse.jdt.core.prefs
+
+WebContent/WEB-INF/classes/
+
+

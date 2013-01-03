@@ -17,7 +17,14 @@ public class Tactic implements java.io.Serializable {
 	private Integer formation;
 	private transient List<TacticPlayer> firstElevent;
 	private transient List<TacticPlayer> subs;
+	private transient List<TacticPlayer> reserves;
 	
+	public List<TacticPlayer> getReserves() {
+		return reserves;
+	}
+	public void setReserves(List<TacticPlayer> reserves) {
+		this.reserves = reserves;
+	}
 	public Tactic(Tactic tactic) {
 		this.teamId = tactic.getTeamId();
 		this.firstElevent = tactic.getFirstElevent();

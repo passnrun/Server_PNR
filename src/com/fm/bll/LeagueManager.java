@@ -9,12 +9,14 @@ import org.apache.log4j.Logger;
 
 import com.fm.dal.Game;
 import com.fm.dal.League;
+import com.fm.dal.Manager;
 import com.fm.dal.ModifyCount;
 import com.fm.dal.Season;
 import com.fm.dal.Team;
 import com.fm.dao.DAO;
 import com.fm.dao.ModifyCountDAO;
 import com.fm.dao.TeamDAO;
+import com.fm.mobile.IPhoneNotificationHandler;
 import com.fm.mw.obj.JSONResponse;
 import com.fm.mw.obj.JSONString;
 import com.fm.util.DateUtil;
@@ -38,6 +40,10 @@ public class LeagueManager {
 		generateFixture(season.getId(), leagueId);
 		league.setStatus(League.STATUS_STARTED);
 		teamDAO.save(league);
+		for (Iterator iterator = teams.iterator(); iterator.hasNext();) {
+			Team team = (Team) iterator.next();
+			IPhoneNotificationHandler.sendPushNotification("League Fixture is drawn on Pass N'Run", team);
+		}
 		return new JSONResponse(0, new JSONString("Done"));
 	}
 

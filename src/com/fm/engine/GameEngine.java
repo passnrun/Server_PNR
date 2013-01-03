@@ -163,7 +163,7 @@ public class GameEngine {
 
 	private FMPlayer[] collectPlayers(Tactic tactic, int team_id) {
 		TacticPlayerDAO dao = new TacticPlayerDAO();
-		List<TacticPlayer> tacticPlayers = dao.findByTactic(tactic.getId());
+		List<TacticPlayer> tacticPlayers = tactic.getFirstElevent();
 		FMPlayer[] players = new FMPlayer[tacticPlayers.size()];
 		int i = 0;
 		for (Iterator<TacticPlayer> iterator = tacticPlayers.iterator(); iterator.hasNext();) {

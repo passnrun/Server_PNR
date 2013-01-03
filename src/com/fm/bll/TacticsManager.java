@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import com.fm.dal.Player;
 import com.fm.dal.Tactic;
@@ -20,12 +19,7 @@ import com.fm.obj.Position;
 
 public class TacticsManager {
 	
-	public static void main(String[] args) {
-		Tactic tactic = TacticsManager.getTeamTactic(1);
-		System.out.println(tactic);
-	}
 	public static Tactic getTeamTactic(int teamId) {
-		DAO dao = new DAO();
 		PlayerDAO pDao = new PlayerDAO();
 		TacticDAO tDao = new TacticDAO();
 		TacticPlayerDAO tpDao = new TacticPlayerDAO();
@@ -34,6 +28,9 @@ public class TacticsManager {
 		if (tactic == null)
 			tactic = generateDefaultTactic(new Team(teamId));
 		List<TacticPlayer> tacticPlayers = tpDao.findByTactic(tactic.getId());
+		List<TacticPlayer> firstEleven = new ArrayList<TacticPlayer>();
+		List<TacticPlayer> subs = new ArrayList<TacticPlayer>();
+		List<TacticPlayer> reserves = new ArrayList<TacticPlayer>();
 		for (Iterator iterator = tacticPlayers.iterator(); iterator.hasNext();) {
 			TacticPlayer tacticPlayer = (TacticPlayer) iterator.next();
 			boolean found = false;
@@ -41,23 +38,22 @@ public class TacticsManager {
 			while (!found && ++i < playerList.size()){
 				if (tacticPlayer.getPlayerId() == playerList.get(i).getId()){
 					tacticPlayer.setPlayer(playerList.remove(i));
+					if (tacticPlayer.getPosition().charAt(0) == 'S')
+						subs.add(tacticPlayer);
+					else if ("R".equals(tacticPlayer.getPosition()))
+						reserves.add(tacticPlayer);
+					else
+						firstEleven.add(tacticPlayer);
 					found = true;
 				}
 			}
-		}
-		List<TacticPlayer> subs = new ArrayList<TacticPlayer>();
-		int substituteIndex = 0;
-		for (Iterator iterator = playerList.iterator(); iterator.hasNext() && subs.size() < 8;) {
-			Player p = (Player) iterator.next();
-			TacticPlayer tp = new TacticPlayer();
-			tp.setPlayerId(p.getId());
-			tp.setPlayer(p);
-			tp.setPosition("S("+ (++substituteIndex)+")");
-			subs.add(tp);
+			if (!found)
+				reserves.add(tacticPlayer);
 		}
 		tactic.setTeamId(teamId);
-		tactic.setFirstElevent(tacticPlayers);
+		tactic.setFirstElevent(firstEleven);
 		tactic.setSubs(subs);
+		tactic.setReserves(reserves);
 		return tactic;
 	}
 	public static Tactic generateDefaultTactic(Team team) {
@@ -76,6 +72,26 @@ public class TacticsManager {
 			playerList.remove(p);
 			tp.setPlayerId(p.getId());
 			tp.setPosition(pos.toString());
+			tp.setTacticId(tactic.getId());
+			dao.save(tp);
+		}
+		Formation substitutes = Formation.getInstance(Formation.FORMATION_SUBS);
+		for (int i = 0; i < substitutes.getPositions().length; i++) {
+			Position pos = substitutes.getPositions()[i];
+			TacticPlayer tp = new TacticPlayer();
+			Player p = chooseBestPlayerForPosition(pos, playerList);
+			playerList.remove(p);
+			tp.setPlayerId(p.getId());
+			tp.setPosition("S"+(i+1));
+			tp.setTacticId(tactic.getId());
+			dao.save(tp);
+		}
+		for (Iterator iterator = playerList.iterator(); iterator.hasNext();) {
+			Player reserve = (Player) iterator.next();
+			TacticPlayer tp = new TacticPlayer();
+			playerList.remove(reserve);
+			tp.setPlayerId(reserve.getId());
+			tp.setPosition("R");
 			tp.setTacticId(tactic.getId());
 			dao.save(tp);
 		}

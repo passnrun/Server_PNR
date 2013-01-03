@@ -15,7 +15,8 @@ public class JSGameDetail extends GameDetail implements JSON{
 		sb.append("\"minute\" :").append(getMinute()).append(" ,");
 		sb.append("\"action\" :").append(getAction()).append(" ,");
 		sb.append("\"team\" :").append(0).append(" ,");
-		sb.append("\"player\" :").append("\""+getPlayer()+"\"}");
+		sb.append("\"player\" :").append("\""+getPlayer()+"\", ");
+		sb.append("\"comment\" :").append("\""+getLogMessage()+"\"}");
 		return sb.toString();
 	}
 	

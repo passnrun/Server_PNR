@@ -37,7 +37,6 @@ public class GameSimulatorJob implements Job {
 		running = true;
 		GameDAO dao = new GameDAO();
 		Calendar now = Calendar.getInstance();
-		now.add(Calendar.DATE, 1);
 		List<Game> gameList = dao.getGamesByDate(now.getTime());
 		if (gameList == null || gameList.size() == 0){
 			logger.info("No games to play..");
@@ -48,12 +47,8 @@ public class GameSimulatorJob implements Job {
 		for (Iterator<Game> iterator = gameList.iterator(); iterator.hasNext();) {
 			Game game = iterator.next();
 			GameEngine engine = new GameEngine();
-			Tactic tactic1 = tacticDao.findByTeam(game.getHomeTeam().getId());
-			if (tactic1 == null)
-				tactic1 = TacticsManager.generateDefaultTactic(game.getHomeTeam());
-			Tactic tactic2 = tacticDao.findByTeam(game.getAwayTeam().getId());
-			if (tactic2 == null)
-				tactic2 = TacticsManager.generateDefaultTactic(game.getAwayTeam());
+			Tactic tactic1 = TacticsManager.getTeamTactic(game.getHomeTeam().getId());
+			Tactic tactic2 = TacticsManager.getTeamTactic(game.getAwayTeam().getId());
 			initializaGame(game);
 			GameOutput out = engine.simulate(game, tactic1, tactic2);
 			processGameOutput(out);
@@ -142,7 +137,7 @@ public class GameSimulatorJob implements Job {
 		calculateAttandance(game);
 	}
 	private void calculateAttandance(Game game) {
-		//25% Sadik taraftar + Ev sahibi takimin son 5 maçta aldigi puan x 4 + rakibin son 5 maçta aldigi puan = stad'in kaç % dolu oldugu..
+		//25% Sadik taraftar + Ev sahibi takimin son 5 maï¿½ta aldigi puan x 4 + rakibin son 5 maï¿½ta aldigi puan = stad'in kaï¿½ % dolu oldugu..
 		int capacity = game.getHomeTeam().getStadium().getCapacity();
 		int percent = 25 + getLastGamePerf(game.getHomeTeam().getId(), 5) * 4 + getLastGamePerf(game.getAwayTeam().getId(), 5);
 		int attendance = capacity * percent / 100;
@@ -168,7 +163,11 @@ public class GameSimulatorJob implements Job {
 		return points;
 	}
 	public static void main(String[] args) throws JobExecutionException {
-		GameSimulatorJob job = new GameSimulatorJob();
-		job.execute(null);
+//		GameSimulatorJob job = new GameSimulatorJob();
+//		job.execute(null);
+		float fl = 1.233333f;
+		String format = "%(.0f";
+		String result = String.format(format, fl);
+		System.out.println(result);
 	}
 }

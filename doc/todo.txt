@@ -1,3 +1,7 @@
+DB Modifications
+- Add Position to PlayerPerformance
+- Add TeamId to PlayerPerformance
+
 + Play Games on Server
 	+ Get squad from tactics..
 	+ If a player is not available, auto select another one

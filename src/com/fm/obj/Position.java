@@ -47,6 +47,8 @@ public class Position {
 	
 	@Override
 	public String toString() {
+		if (GOALKEEPER.equals(position) || STRIKER.equals(position))
+			return position;
 		return position+"("+side+")";
 	}
 	

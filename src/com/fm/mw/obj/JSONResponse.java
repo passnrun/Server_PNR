@@ -11,6 +11,7 @@ public class JSONResponse implements JSON{
 	//Sync
 	public static final int ERROR_NO_MANAGER_FOUND 	= -21;
 	public static final int ERROR_NO_GAME_FOUND 	= -22;
+	public static final int ERROR_NO_PLAYER_FOUND 	= -23;
 	
 	private int result;
 	private JSON data;

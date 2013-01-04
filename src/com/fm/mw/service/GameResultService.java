@@ -22,7 +22,7 @@ public class GameResultService {
 private static Logger logger = Logger.getLogger(GameResultService.class);
 	
 	public static JSONResponse process(Map<String, Object> map){
-		logger.info("game result sync request received :" + map);
+		logger.info("game result request received :" + map);
 		GameDAO dao = new GameDAO();
 		ModifyCountDAO mcDao = new ModifyCountDAO();
 		Integer managerId = Integer.parseInt((String)map.get("managerId"));

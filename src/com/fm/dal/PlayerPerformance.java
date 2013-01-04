@@ -8,8 +8,10 @@ package com.fm.dal;
 public class PlayerPerformance implements java.io.Serializable {
 
 	private int id;
-	private Integer playerId;
+	private Player player;
+	private String  position;
 	private Integer gameId;
+	private Integer teamId;
 	private Integer seasonId;
 	private Integer mins;
 	private Integer assist;
@@ -19,15 +21,29 @@ public class PlayerPerformance implements java.io.Serializable {
 
 	public PlayerPerformance() {
 	}
+	
+	public PlayerPerformance(PlayerPerformance pp) {
+		this.id = pp.getId();
+		this.player = pp.getPlayer();
+		this.position = pp.getPosition();
+		this.gameId = pp.getGameId();
+		this.teamId = pp.getTeamId();
+		this.seasonId = pp.getSeasonId();
+		this.mins = pp.getMins();
+		this.assist = pp.getAssist();
+		this.goal = pp.getGoal();
+		this.form = pp.getForm();
+		this.morale = pp.getMorale();
+	}
 
 	public PlayerPerformance(int id) {
 		this.id = id;
 	}
 
-	public PlayerPerformance(int id, Integer playerId, Integer gameId,
+	public PlayerPerformance(int id, Player player, Integer gameId,
 			Integer mins, Integer assist, Integer goal, Integer form) {
 		this.id = id;
-		this.playerId = playerId;
+		this.player = player;
 		this.gameId = gameId;
 		this.mins = mins;
 		this.assist = assist;
@@ -43,12 +59,12 @@ public class PlayerPerformance implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getPlayerId() {
-		return this.playerId;
+	public Player getPlayer() {
+		return this.player;
 	}
 
-	public void setPlayerId(Integer playerId) {
-		this.playerId = playerId;
+	public void setPlayer(Player playerId) {
+		this.player = playerId;
 	}
 
 	public Integer getGameId() {
@@ -106,5 +122,20 @@ public class PlayerPerformance implements java.io.Serializable {
 	public void setMorale(Integer morale) {
 		this.morale = morale;
 	}
+	
+	public String getPosition() {
+		return position;
+	}
 
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public Integer getTeamId() {
+		return teamId;
+	}
+
+	public void setTeamId(Integer teamId) {
+		this.teamId = teamId;
+	}
 }

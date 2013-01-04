@@ -8,8 +8,14 @@
             <column name="ID" />
             <generator class="increment" />
         </id>
-        <property name="playerId" type="java.lang.Integer">
+        <many-to-one name="player" class="com.fm.dal.Player" fetch="select" lazy="false">
             <column name="PLAYER_ID" />
+        </many-to-one>
+        <property name="position" type="string">
+            <column name="POSITION" length="16" />
+        </property>
+        <property name="teamId" type="java.lang.Integer">
+            <column name="TEAM_ID" />
         </property>
         <property name="seasonId" type="java.lang.Integer">
             <column name="SEASON_ID" />

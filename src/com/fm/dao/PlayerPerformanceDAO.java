@@ -22,4 +22,14 @@ public class PlayerPerformanceDAO extends DAO {
 			return playerPerfs.get(0);
 		return null;
 	}
+	public List<PlayerPerformance> getGamePerformances(int gameId) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from "+PlayerPerformance.class.getName() + " where gameId = :gameId");
+		query.setParameter("gameId", gameId);
+		List<PlayerPerformance> playerPerfs = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return playerPerfs;
+	}
 }

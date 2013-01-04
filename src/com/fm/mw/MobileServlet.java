@@ -21,6 +21,7 @@ import com.fm.mw.obj.JSONString;
 import com.fm.mw.service.FixtureService;
 import com.fm.mw.service.GameDetailService;
 import com.fm.mw.service.GameResultService;
+import com.fm.mw.service.PlayerService;
 import com.fm.mw.service.RegisterService;
 import com.fm.mw.service.ResignService;
 import com.fm.mw.service.SquadService;
@@ -73,12 +74,18 @@ public static void main(String[] args) {
 		
 		if (jsonReq.getService().equals("gameResult"))
 			return GameResultService.process((Map<String, Object>)jsonReq.getData());
-		
+
 		if (jsonReq.getService().equals("gameDetails"))
 			return GameDetailService.process((Map<String, Object>)jsonReq.getData());
 
+		if (jsonReq.getService().equals("gameTeamStats"))
+			return GameDetailService.teamStats((Map<String, Object>)jsonReq.getData());
+
 		if (jsonReq.getService().equals("squad"))
 			return SquadService.process((Map<String, Object>)jsonReq.getData());
+
+		if (jsonReq.getService().equals("player"))
+			return PlayerService.process((Map<String, Object>)jsonReq.getData());
 		
 		if (jsonReq.getService().equals("saveSquad"))
 			return SquadService.save((Map<String, Object>)jsonReq.getData());

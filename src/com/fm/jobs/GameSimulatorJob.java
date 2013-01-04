@@ -110,9 +110,11 @@ public class GameSimulatorJob implements Job {
 			perf.setGameId(game.getId());
 			perf.setGoal(player.getGoals());
 			perf.setMins(90);
-			perf.setPlayerId(player.getId());
+			perf.setPlayer(player);
 			perf.setSeasonId(game.getSeasonId());
+			perf.setTeamId(player.getCurrentTeam());
 			perf.setMorale(player.getMorale());
+			perf.setPosition(player.getCurrentPosition().toString());
 			dao.save(perf);
 		}
 	}

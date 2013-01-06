@@ -536,6 +536,12 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="18cc659:13bdd36e5d3:-7e95" mandatory="false" name="MORALE">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
+<column auto-increment="false" column-size="16" decimal-digits="0" default-value="" id="1a0941a:13c0d393005:-7fb8" mandatory="false" name="POSITION">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1a0941a:13c0d393005:-7fb7" mandatory="false" name="TEAM_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="4d5bcb:1327e8fda13:-7e7d" name="PK_PLAYER_PERFORMANCE">
 <primary-key-column name="ID"/>
@@ -771,9 +777,9 @@
 <table-figure refid="4d5bcb:1327e8fda13:-7ec3" x="6" y="421"/>
 <table-figure refid="4d5bcb:1327e8fda13:-7ea8" x="575" y="170"/>
 <table-figure refid="4d5bcb:1327e8fda13:-7e9f" x="581" y="324"/>
-<table-figure refid="4d5bcb:1327e8fda13:-7e8f" x="791" y="227"/>
-<table-figure refid="4d5bcb:1327e8fda13:-7e86" x="787" y="139"/>
-<table-figure refid="4d5bcb:1327e8fda13:-7e7e" x="775" y="14"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7e8f" x="806" y="278"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7e86" x="814" y="169"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7e7e" x="787" y="6"/>
 <table-figure refid="4d5bcb:1327e8fda13:-7e76" x="147" y="15"/>
 <table-figure refid="4d5bcb:1327e8fda13:-7e6e" x="376" y="142"/>
 <table-figure refid="4d5bcb:1327e8fda13:-7e60" x="7" y="323"/>

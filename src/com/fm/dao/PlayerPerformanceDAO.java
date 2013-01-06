@@ -12,7 +12,7 @@ public class PlayerPerformanceDAO extends DAO {
 	public PlayerPerformance getPlayerPerformance(int gameId, int playerId) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from "+PlayerPerformance.class.getName() + " where gameId = :gameId and playerId = :playerId");
+		Query query = session.createQuery("from "+PlayerPerformance.class.getName() + " where gameId = :gameId and player.id = :playerId");
 		query.setParameter("gameId", gameId);
 		query.setParameter("playerId", playerId);
 		List<PlayerPerformance> playerPerfs = query.list();

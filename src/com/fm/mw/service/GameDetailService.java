@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.fm.dal.Game;
 import com.fm.dal.GameDetail;
 import com.fm.dal.PlayerPerformance;
 import com.fm.dao.GameDetailDAO;
@@ -25,8 +26,9 @@ private static Logger logger = Logger.getLogger(GameResultService.class);
 		logger.info("team stats request received :" + map);
 		PlayerPerformanceDAO dao = new PlayerPerformanceDAO();
 		Integer gameId = Integer.parseInt((String)map.get("gameId"));
+		Game game = (Game)dao.findById(Game.class, gameId);
 		List<PlayerPerformance> performances = dao.getGamePerformances(gameId);
-		JSTeamPlayerStats jsTeamPlayers = new JSTeamPlayerStats(performances);
+		JSTeamPlayerStats jsTeamPlayers = new JSTeamPlayerStats(game, performances);
 		return new JSONResponse(0, jsTeamPlayers);
 	}
 	

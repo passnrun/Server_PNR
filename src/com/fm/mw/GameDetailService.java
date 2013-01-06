@@ -26,11 +26,14 @@ public class GameDetailService extends HttpServlet {
 		List<GameDetail> details = dao.getGameDetails(gameId, 5);
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<body>");
+		buffer.append("<table style=\" font-family: Arial; font-size: 12px; color: white; font-weight: bold; \">");
 		for (Iterator iterator = details.iterator(); iterator.hasNext();) {
 			GameDetail gameDetail = (GameDetail) iterator.next();
 			if (gameDetail.getLogMessage() != null)
-				buffer.append("<p>"+gameDetail.getMinute()+". "+gameDetail.getLogMessage()+"</p>");
+				buffer.append("<tr><td valign=\"top\">"+gameDetail.getMinute()+". "+"</td><td>"+gameDetail.getLogMessage()+"</td></tr>");
+			
 		}
+		buffer.append("</table>");
 		buffer.append("</body>");
 		writeResponse(resp, buffer.toString());
 	}

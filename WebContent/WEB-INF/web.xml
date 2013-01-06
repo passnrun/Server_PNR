@@ -9,6 +9,14 @@
 	<servlet-name>MobileServlet</servlet-name>
 	<url-pattern>/Mobile/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+	<servlet-name>GameDetailServlet</servlet-name>
+	<servlet-class>com.fm.mw.GameDetailService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>GameDetailServlet</servlet-name>
+	<url-pattern>/GameDetail/*</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

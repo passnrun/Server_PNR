@@ -19,7 +19,8 @@ public interface ISkills {
 		4,  //Teamwork
 		5,  //Agility
 		2,  //Acceleration
-		0   //Stamina
+		0,  //Stamina
+		0   //Shooting
 	};
 	public static final int[] DEF_SKILL_RELEVANCE = new int[]{
 		5,  //Strength
@@ -39,7 +40,8 @@ public interface ISkills {
 		4,  //Teamwork
 		3,  //Agility
 		3,  //Acceleration
-		3   //Stamina
+		3,  //Stamina
+		3   //Shooting
 	};
 	public static final int[] DM_SKILL_RELEVANCE = new int[]{
 		5,  //Strength
@@ -59,7 +61,8 @@ public interface ISkills {
 		5,  //Teamwork
 		3,  //Agility
 		3,  //Acceleration
-		5   //Stamina
+		5,  //Stamina
+		3   //Shooting
 	};
 	public static final int[] M_SKILL_RELEVANCE = new int[]{
 		4,  //Strength
@@ -79,7 +82,8 @@ public interface ISkills {
 		5,  //Teamwork
 		3,  //Agility
 		4,  //Acceleration
-		5   //Stamina
+		5,  //Stamina
+		4   //Shooting
 	};
 	public static final int[] AM_SKILL_RELEVANCE = new int[]{
 		2,  //Strength
@@ -99,7 +103,8 @@ public interface ISkills {
 		3,  //Teamwork
 		3,  //Agility
 		4,  //Acceleration
-		3   //Stamina
+		3,  //Stamina
+		5   //Shooting
 	};
 	public static final int[] ST_SKILL_RELEVANCE = new int[]{
 		4,  //Strength
@@ -119,7 +124,8 @@ public interface ISkills {
 		3,  //Teamwork
 		4,  //Agility
 		4,  //Acceleration
-		3   //Stamina
+		3,  //Stamina
+		5   //Shooting
 	};
 	public static final int Strength      = 0;
 	public static final int Reflexes      = 1;
@@ -139,4 +145,5 @@ public interface ISkills {
 	public static final int Agility       = 15;
 	public static final int Acceleration  = 16;
 	public static final int Stamina       = 17;
+	public static final int Shooting      = 18;
 }

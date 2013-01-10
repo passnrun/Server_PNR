@@ -28,10 +28,10 @@ public class JSPlayerDetail extends Player implements JSON {
 		sb.append("\"quality\" :").append("\""+getQuality()).append("\" ,");
 		sb.append("\"fitness\" :").append("\""+getFitness()).append("\" ,");
 		sb.append("\"morale\" :").append("\""+getMorale()).append("\" ,");
-		sb.append("\"name\" :").append("\""+getShortName()+"\"").append(" ,");
+		sb.append("\"name\" :").append("\""+getFullName()+"\"").append(" ,");
 		sb.append("\"birthdate\" :").append("\""+format.format(getBirthdate())+"\"").append(" ,");
 		sb.append("\"age\" :").append(DateUtil.getAge(getBirthdate())).append(" ,");
-		sb.append("\"team\" :").append("{\"id\" :").append(getTeamObj().getId()).append(" ,").append("\"name\" :").append("\""+getTeamObj().getName()+"\"}");
+		sb.append("\"team\" :").append("{\"id\" :").append(getTeamObj().getId()).append(" ,").append("\"name\" :").append("\""+getTeamObj().getName()+"\"}, ");
 		sb.append("\"skill\" :").append(skill.toJSON()).append(" ,");
 		sb.append("\"seasonPerf\" :").append(seasonPerformance.toJSON()).append(" }");
 		return sb.toString();

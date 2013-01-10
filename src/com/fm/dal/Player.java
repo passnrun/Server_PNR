@@ -169,6 +169,16 @@ public class Player implements java.io.Serializable {
 			shortName = name;
 		return shortName;
 	}
+	public String getFullName() {
+		String fullName = "";
+		if (name != null && name.trim().length()>0)
+			fullName = name.trim() + " ";
+		if (surname!=null)
+			fullName = fullName + surname;
+		else
+			fullName = name;
+		return fullName;
+	}
 
 	public void setSurname(String surname) {
 		this.surname = surname;

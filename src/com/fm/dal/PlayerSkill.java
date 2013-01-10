@@ -9,25 +9,31 @@ public class PlayerSkill implements java.io.Serializable {
 
 	private int id;
 	private Player player;
+	
 	private Integer handling;
+	private Integer reflexes;
+
 	private Integer tackling;
+	private Integer heading;
+	
 	private Integer passing;
 	private Integer creativity;
-	private Integer positioning;
-	private Integer teamwork;
-	private Integer heading;
-	private Integer shooting;
-	private Integer dribbling;
-	private Integer reflexes;
-	private Integer finishing;
 	private Integer crossing;
 	private Integer technique;
+	
+	private Integer positioning;
+	private Integer shooting;
+	private Integer dribbling;
+	private Integer finishing;
 	private Integer firstTouch;
 	private Integer composure;
+	
 	private Integer agility;
+	private Integer teamwork;
 	private Integer acceleration;
 	private Integer stamina;
 	private Integer strength;
+	
 
 	public PlayerSkill() {
 	}

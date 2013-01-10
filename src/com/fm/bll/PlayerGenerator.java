@@ -11,6 +11,7 @@ import com.fm.dal.PlayerSkill;
 import com.fm.dal.PlayerTemplate;
 import com.fm.dal.Team;
 import com.fm.dao.PlayerTemplateDAO;
+import com.fm.engine.actions.Shoot;
 import com.fm.obj.IPlayerQuality;
 import com.fm.obj.ISkills;
 import com.fm.obj.Position;
@@ -85,6 +86,7 @@ public class PlayerGenerator implements ISkills, IPlayerQuality{
 		skill.setTeamwork(generateSkillValue(quality, findRelevance(Teamwork, position.getPosition())));
 		skill.setStamina(generateSkillValue(quality, findRelevance(Stamina, position.getPosition())));
 		skill.setStrength(generateSkillValue(quality, findRelevance(Strength, position.getPosition())));
+		skill.setShooting(generateSkillValue(quality, findRelevance(Shooting, position.getPosition())));
 		
 		return skill;
 	}

@@ -16,8 +16,6 @@ public class Dribbling extends FMAction {
 		int defenderScore = 0;
 		if (getPreventer() != null)
 			defenderScore = performance(getDefendSkill(getPreventer()));
-		if (getPreventer() != null)
-			logger.info(game, minute, getPerformer().getName() + " performs a dribblings["+performanceScore+"] while defender tries to prevent["+defenderScore+"]");
 		result = compare(performanceScore, defenderScore);
 		if (result >= 0){
 			getPerformer().advance();

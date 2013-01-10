@@ -13,12 +13,14 @@ public class ResignService {
 		Manager manager = (Manager)dao.findById(Manager.class, mid);
 		if (manager == null)
 			return new JSONResponse(JSONResponse.ERROR_NO_TEAM_FOUND, new JSONString("No manager found with id:"+mid));
-		Team team = (Team)dao.findById(Team.class, manager.getCurrentTeam());
+		Team team = manager.getCurrentTeam()!=null?(Team)dao.findById(Team.class, manager.getCurrentTeam()):null;
 		if (team != null){
 			team.setCurrentManager(null);
 			dao.save(team);
 		}
-		dao.delete(manager);
+		manager.setCurrentTeam(null);
+		dao.save(manager);
+		//dao.delete(manager);
 		return new JSONResponse(0, new JSONString("Deleted manager with id:"+mid));
 	}
 }

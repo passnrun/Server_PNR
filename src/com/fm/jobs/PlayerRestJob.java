@@ -12,7 +12,7 @@ import com.fm.dal.Team;
 import com.fm.dao.PlayerDAO;
 
 public class PlayerRestJob implements Job {
-	public static final int DAILY_REST = 15;
+	public static final int HOURLY_REST = 1;
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		PlayerDAO dao = new PlayerDAO();
@@ -23,7 +23,7 @@ public class PlayerRestJob implements Job {
 			for (Iterator<Player> iterator2 = players.iterator(); iterator2.hasNext();) {
 				Player player = (Player) iterator2.next();
 				int prev = player.getFitness();
-				int next = (prev + DAILY_REST)>100?100:(prev+DAILY_REST);
+				int next = (prev + HOURLY_REST)>100?100:(prev+HOURLY_REST);
 				if (next>prev){
 					player.setFitness(next);
 					dao.save(player);

@@ -36,7 +36,6 @@ public class Heading extends FMAction {
 		int defScore = 0;
 		if (getPreventer() != null){
 			defScore = performance(getDefendSkill(getPreventer()));
-			logger.info(game, minute, "attacker["+getPerformer().getName()+"]'s heading["+attScore+"] is tried to be prevented["+defScore+"]");
 		}
 		result = compare(attScore, defScore);
 		if (result == 5){

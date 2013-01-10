@@ -11,7 +11,7 @@ public class DateUtil {
 	public static Calendar getFirstGamePlayDate(int daysAfter, int hour){
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, daysAfter);
-		cal.set(Calendar.HOUR, hour);
+		cal.set(Calendar.HOUR_OF_DAY, hour);
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);

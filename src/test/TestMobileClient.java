@@ -24,14 +24,14 @@ public class TestMobileClient {
 	    // Send POST output.
 	    DataOutputStream printout = new DataOutputStream(connection.getOutputStream ());
 //	    String content ="{\"service\" : \"register\",\"manager\" : {\"firstName\" : \"Fatih\",\"lastName\" : \"Terim\",\"nationality\" : \"turkey\",\"language\" : \"turkish\",\"birthdate\" : \"22081982\",\"device\" : \"iphone\",\"deviceId\" : \"dmskfmdsjfnskhfdskfzbndshkfbsdhkfbs\"}}";
-	    String content = "{\"service\" : \"createLeague\", \"name\" : \"Super Leage\", \"country\":\"turkey\"}";
-//	    String content = "{\"service\" : \"initiate\", \"leagueId\" : 2}";
+//	    String content = "{\"service\" : \"createLeague\", \"name\" : \"Super Leage\", \"country\":\"turkey\"}";
+//	    String content = "{\"service\" : \"initiate\", \"leagueId\" : 1}";
 //	    String content = "{\"service\" : \"resign\", \"id\" : 3}";
 //	    String content = "{\"service\" : \"createPlayers\", \"manager\" : {\"name\" : \"Super Leage\", \"country\":\"turkey\"}}";
 //	    String content = "{\"service\" : \"gameResult\", \"managerId\" : 31, \"minGames\" =0\"}";
 //	    String content = "{\"service\" : \"gameDetails\", \"gameId\" : 1, \"logLevel\" : 4}";
 //	    String content = "{\"service\" : \"squad\", \"teamId\" : 1}";
-//	    String content = "{\"service\" : \"schedule\", \"leagueId\" : 1}";
+	    String content = "{\"service\" : \"schedule\", \"leagueId\" : 1}";
 //	    String content = "{\"service\" : \"fixture\", \"leagueId\" : 1, \"seasonId\" : 1}";
 	    printout.writeBytes (content);
 	    printout.flush ();

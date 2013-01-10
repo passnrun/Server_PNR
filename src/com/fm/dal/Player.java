@@ -24,8 +24,23 @@ public class Player implements java.io.Serializable {
 	private Integer quality;
 	private String  latestForm;
 	private PlayerSkill playerSkill;
+	private transient Team teamObj;
 
 	public Player() {
+	}
+	public Player(Player p) {
+		this.id = p.getId();
+		this.name = p.getName();
+		this.surname = p.getSurname();
+		this.position = p.getPosition();
+		this.birthdate = p.getBirthdate();
+		this.currentTeam = p.getCurrentTeam();
+		this.fitness = p.getFitness();
+		this.morale = p.getMorale();
+		this.latestForm = p.getLatestForm(); 
+		this.quality = p.getQuality();
+		this.playerSkill = p.getPlayerSkill();
+		this.teamObj = p.getTeamObj();
 	}
 
 	public Player(int id) {
@@ -120,6 +135,19 @@ public class Player implements java.io.Serializable {
 		this.playerSkill = playerSkill;
 	}
 
+	public String getFormattedLatestForm() {
+		if (latestForm == null || latestForm.trim().length() == 0)
+			return "-";
+		String[] vals = latestForm.split("/");
+		StringBuffer buffer = new StringBuffer();
+		for (int i = 0; i < vals.length; i++) {
+			if (i > 0)
+				buffer.append("/");
+			float val =  Float.parseFloat(vals[i]) / 100;
+			buffer.append(String.format("%(.0f", val));
+		}
+		return buffer.toString();
+	}
 	public String getLatestForm() {
 		return latestForm;
 	}
@@ -144,6 +172,12 @@ public class Player implements java.io.Serializable {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+	public Team getTeamObj() {
+		return teamObj;
+	}
+	public void setTeamObj(Team team) {
+		this.teamObj = team;
 	}
 
 }

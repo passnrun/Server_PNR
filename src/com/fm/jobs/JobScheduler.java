@@ -33,10 +33,10 @@ public class JobScheduler {
 
 	private void scheduleSimulator() throws Exception {
 		JobDetail job = newJob(GameSimulatorJob.class)
-			      .withIdentity("gameSimulator", "game")
+			      .withIdentity("gameSimulator")
 			      .build();
 		Trigger trigger = newTrigger()
-				    .withIdentity("hourlyTrigger", "hourly")
+				    .withIdentity("gameSimulatorTrigger")
 				    .withSchedule(cronSchedule("0 0 * * * ?"))
 				    .forJob(job)
 				    .build();
@@ -44,11 +44,11 @@ public class JobScheduler {
 	}
 	private void schedulePlayerRest() throws Exception {
 		JobDetail job = newJob(PlayerRestJob.class)
-		.withIdentity("playerRest", "daily")
+		.withIdentity("playerRest")
 		.build();
 		Trigger trigger = newTrigger()
-		.withIdentity("dailyTrigger", "daily")
-		.withSchedule(cronSchedule("0 30 0 * * ?"))
+		.withIdentity("playerRestTrigger")
+		.withSchedule(cronSchedule("0 30 * * * ?"))
 		.forJob(job)
 		.build();
 		sched.scheduleJob(job, trigger);

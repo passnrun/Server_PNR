@@ -18,6 +18,7 @@ public class PlayerPerformance implements java.io.Serializable {
 	private Integer goal;
 	private Integer form;
 	private Integer morale;
+	private transient int played;
 
 	public PlayerPerformance() {
 	}
@@ -137,5 +138,13 @@ public class PlayerPerformance implements java.io.Serializable {
 
 	public void setTeamId(Integer teamId) {
 		this.teamId = teamId;
+	}
+
+	public int getPlayed() {
+		return played;
+	}
+
+	public void setPlayed(int played) {
+		this.played = played;
 	}
 }

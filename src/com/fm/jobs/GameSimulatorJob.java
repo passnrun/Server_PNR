@@ -12,6 +12,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import com.fm.bll.NewsManager;
 import com.fm.bll.TacticsManager;
 import com.fm.dal.Game;
 import com.fm.dal.GameDetail;
@@ -52,9 +53,9 @@ public class GameSimulatorJob implements Job {
 			initializaGame(game);
 			GameOutput out = engine.simulate(game, tactic1, tactic2);
 			processGameOutput(out);
+			NewsManager.create(game.getHomeTeam());
+			NewsManager.create(game.getAwayTeam());
 			logger.info("Game["+game.getId()+"] is completed");
-			if (true)
-				break;
 		}
 		running = false;
 	}

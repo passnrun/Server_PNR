@@ -1,6 +1,7 @@
 package com.fm.mw.obj;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,17 +14,21 @@ public class JSTeamPlayerStats implements JSON {
 	private JSList playersOfAway;
 	
 	public JSTeamPlayerStats(Game game, List<PlayerPerformance> performances) {
-		playersOfHome = new JSList(new ArrayList<JSON>());
-		playersOfAway = new JSList(new ArrayList<JSON>());
-		
+		List<JSPlayerPerformance> homePlayers = new ArrayList<JSPlayerPerformance>();
+		List<JSPlayerPerformance> awayPlayers = new ArrayList<JSPlayerPerformance>();
 		for (Iterator iterator = performances.iterator(); iterator.hasNext();) {
 			PlayerPerformance pp = (PlayerPerformance) iterator.next();
-			if (game.getHomeTeam().getId() == pp.getTeamId()){
-				playersOfHome.getList().add(new JSPlayerPerformance(pp));
-			}else{
-				playersOfAway.getList().add(new JSPlayerPerformance(pp));
-			}
+			if (game.getHomeTeam().getId() == pp.getTeamId())
+				homePlayers.add(new JSPlayerPerformance(pp));
+			else
+				awayPlayers.add(new JSPlayerPerformance(pp));
 		}
+		Collections.sort(homePlayers);
+		Collections.sort(awayPlayers);
+		playersOfHome = new JSList(new ArrayList<JSON>());
+		playersOfHome.getList().addAll(homePlayers);
+		playersOfAway = new JSList(new ArrayList<JSON>());
+		playersOfAway.getList().addAll(awayPlayers);
 	}
 	@Override
 	public String toJSON() {

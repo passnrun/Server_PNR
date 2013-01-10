@@ -16,7 +16,7 @@ public class JSTacticPlayer extends TacticPlayer implements JSON, Comparable<JST
 	public String toJSON() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("{\"id\" :").append(getId()).append(" ,");
-		sb.append("\"latestForm\" :").append("\""+format(getPlayer().getLatestForm())+"\"").append(" ,");
+		sb.append("\"latestForm\" :").append("\""+getPlayer().getFormattedLatestForm()+"\"").append(" ,");
 		sb.append("\"position\" :").append("\""+getPosition()+"\"").append(" ,");
 		sb.append("\"nativePosition\" :").append("\""+getPlayer().getPosition()+"\"").append(" ,");
 		sb.append("\"playerId\" :").append(getPlayerId()).append(" ,");
@@ -24,20 +24,6 @@ public class JSTacticPlayer extends TacticPlayer implements JSON, Comparable<JST
 		sb.append("\"name\" :").append("\""+getPlayer().getShortName()+"\"").append(" ,");
 		sb.append("\"age\" :").append(DateUtil.getAge(getPlayer().getBirthdate())).append("}");
 		return sb.toString();
-	}
-
-	private static String format(String latestForm) {
-		if (latestForm == null || latestForm.trim().length() == 0)
-			return "-";
-		String[] vals = latestForm.split("/");
-		StringBuffer buffer = new StringBuffer();
-		for (int i = 0; i < vals.length; i++) {
-			if (i > 0)
-				buffer.append("/");
-			float val =  Float.parseFloat(vals[i]) / 100;
-			buffer.append(String.format("%(.0f", val));
-		}
-		return buffer.toString();
 	}
 
 	@Override

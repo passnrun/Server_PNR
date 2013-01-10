@@ -28,10 +28,7 @@ public class LongPass extends FMAction {
 			FMPlayer target = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), 
 					new String[]{Position.STRIKER, Position.ATTACKING_MIDFIELDER, Position.MIDFIELDER})));
 			target.setTeam(getPerformer().getTeam());
-			if (result == 5)
-				return new Shoot(target);
-			else 
-				return new Undefined(target);
+			return new Shoot(target);
 		}else if (result  > 1){
 			logger.debug(game, minute, "Good Pass: pass["+performanceScore+"] couldnt be defended["+defenderScore+"] ");
 			FMPlayer target = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), new String[]{Position.findNextPosition(getPerformer().getCurrentPosition().getPosition(), 2)})));

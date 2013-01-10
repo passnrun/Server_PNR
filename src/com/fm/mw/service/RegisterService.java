@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.fm.bll.NewsManager;
 import com.fm.dal.Manager;
 import com.fm.dal.Team;
 import com.fm.dao.TeamDAO;
@@ -55,6 +56,7 @@ public class RegisterService {
 		team.setCurrentManager(m.getId());
 		team.setName(m.getTeamName());
 		dao.save(team);
+		NewsManager.create(team);
 		IDList ids = new IDList();
 		ids.setManagerId(m.getId());
 		ids.setTeamId(team.getId());

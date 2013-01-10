@@ -35,10 +35,7 @@ public class Pass extends FMAction {
 			FMPlayer scorer = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), 
 					new String[]{Position.STRIKER, Position.ATTACKING_MIDFIELDER, Position.MIDFIELDER})));
 			scorer.setTeam(getPerformer().getTeam());
-			if (result == 5)
-				return new Shoot(scorer);
-			else 
-				return new Undefined(scorer);
+			return new Shoot(scorer);
 		}else if (result  > 0){
 			logger.debug(game, minute, "Good Pass: pass["+performanceScore+"] couldnt be defended["+defendScore+"] ");
 			FMPlayer scorer = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), 

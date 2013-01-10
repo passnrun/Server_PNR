@@ -128,7 +128,7 @@ public abstract class FMAction {
 		for (int i = 0; i < skill/2 && i < setLow.size(); i++) 
 			setLow.remove(r.nextInt(setLow.size()));
 		//Process Removal of Highs
-		for (int i = 0; i < (FMPlayer.MAX_SKILLVALUE - skill)/2 || i < setHigh.size(); i++) 
+		for (int i = 0; i < (FMPlayer.MAX_SKILLVALUE - skill)/2 && i < setHigh.size(); i++) 
 			setHigh.remove(r.nextInt(setHigh.size()));
 		List<Integer> set = new ArrayList<Integer>();
 		set.addAll(setLow);set.addAll(setHigh);

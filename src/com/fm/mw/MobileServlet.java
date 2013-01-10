@@ -52,7 +52,7 @@ public static void main(String[] args) {
 //	String content = "{\"service\" : \"createLeague\", \"name\" : \"Super Leage\", \"country\":\"turkey\"}";
 //	String content = "{\"service\" : \"teamList\", \"leagueId\" : 1}";
 //	String content = "{\"service\" : \"fixture\", \"leagueId\" : 1, \"seasonId\" : 1}";
-	 String content = "{\"service\" : \"gameResult\", \"managerId\" : 31, \"minGames\" =0\"}";
+	 String content = "{\"service\" : \"player\", \"playerId\" : 192, \"minGames\" =0\"}";
 	JSONRequest req = parseJSONRequest(content);
 	System.out.println(processRequest(req).toJSON());
 }

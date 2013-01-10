@@ -80,6 +80,8 @@ public class FMPlayer extends Player {
 			value += value * (morale - moraleNormal) / MAX_SKILLVALUE;
 		else
 			value -= value * (morale - moraleNormal) / MAX_SKILLVALUE;
+		if (value <= 0)
+			value = 1;
 		return value;
 	}
 	

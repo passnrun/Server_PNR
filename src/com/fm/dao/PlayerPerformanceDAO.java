@@ -32,4 +32,21 @@ public class PlayerPerformanceDAO extends DAO {
 		session.close();
 		return playerPerfs;
 	}
+	public Object[] getCurrentSeasonPlayerPerformance(int playerId) {
+		List<Object[]> performances = getPlayerPerformanceBySeason(playerId);
+		if (performances != null && performances.size()>0)
+			return performances.get(0);
+		return null;
+	}
+	public List<Object[]> getPlayerPerformanceBySeason(int playerId) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("select seasonId, count(*), sum(mins), sum(goal), sum(assist), avg(form) from "+PlayerPerformance.class.getName() 
+				+ " where player.id = :playerId group by seasonId order by seasonId desc");
+		query.setInteger("playerId", playerId);
+		List<Object[]> playerPerfs = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return playerPerfs;
+	}
 }

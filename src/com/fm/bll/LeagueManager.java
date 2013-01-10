@@ -42,7 +42,7 @@ public class LeagueManager {
 		teamDAO.save(league);
 		for (Iterator iterator = teams.iterator(); iterator.hasNext();) {
 			Team team = (Team) iterator.next();
-			IPhoneNotificationHandler.sendPushNotification("League Fixture is drawn on Pass N'Run", team);
+			NewsManager.create(team);
 		}
 		return new JSONResponse(0, new JSONString("Done"));
 	}

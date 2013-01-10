@@ -25,8 +25,6 @@ public class Crossing extends FMAction {
 		int defendScore = 0;
 		if (getPreventer() != null)
 			defendScore =performance(getDefendSkill(getPreventer()));
-		if (getPreventer() != null)
-			logger.info(game, minute, getPerformer().getName() + " performs a cross["+performanceScore +"], while defender["+getPreventer().getName()+"] tries to defend["+defendScore+"]");
 		result = compare(performanceScore, defendScore);
 		String[] oppositeSides = oppositeSides(getPerformer().getCurrentPosition().getSide());
 		if (result >= 4){

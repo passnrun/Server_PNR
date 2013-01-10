@@ -1,6 +1,6 @@
 package com.fm.obj;
 
-public class Position {
+public class Position implements Comparable<Position>{
 	
 	//Positions
 	public static final String GOALKEEPER						= "GK";
@@ -145,5 +145,14 @@ public class Position {
 		String oppPos = opposites(currentPosition.getPosition())[0];
 		String oppSide = oppositeSide(currentPosition.getSide());
 		return new Position(oppPos+"("+oppSide+")");
+	}
+
+	@Override
+	public int compareTo(Position p2) {
+		int diff = getPositionIndex(getPosition())-Position.getPositionIndex(p2.getPosition());
+		if (diff == 0)
+			return getSideIndex(getSide()) - getSideIndex(p2.getSide());
+		else
+			return diff;
 	}
 }

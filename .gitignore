@@ -20,3 +20,5 @@
 WebContent/WEB-INF/classes/
 
 
+
+*.war

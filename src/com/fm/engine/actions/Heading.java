@@ -13,7 +13,7 @@ import com.fm.obj.FMPlayer;
 import com.fm.obj.Position;
 
 public class Heading extends FMAction {
-	private static LogManager logger = new LogManager();
+	private static LogManager logger = LogManager.getInstance();
 	public Heading(FMPlayer p) {
 		setPerformer(p);
 	}
@@ -25,9 +25,9 @@ public class Heading extends FMAction {
 	@Override
 	public void updateFitnesses() {
 		if (getPerformer() != null)
-			getPerformer().decreasePlayerFitness(2);
+			getPerformer().decreasePlayerFitness(1);
 		if (getPreventer() != null)
-			getPreventer().decreasePlayerFitness(2);
+			getPreventer().decreasePlayerFitness(1);
 	}
 
 	@Override
@@ -38,18 +38,20 @@ public class Heading extends FMAction {
 			defScore = performance(getDefendSkill(getPreventer()));
 		}
 		result = compare(attScore, defScore);
+		logger.info(game, minute, getPerformer().getShortName()+" hits the ball!");
 		if (result == 5){
-			logger.info(game, minute, "Goal!: great heading["+attScore+"] couldnt be defended["+defScore+"], in the nets..");
+			logger.info(game, minute, "Goal!!!, What a head!!!");
 			return new Goal(getPerformer());
 		}else if (result >= 3){
-			logger.info(game, minute, "Pass: good heading["+attScore+"] couldnt be defended["+defScore+"]");
 			List<FMPlayer> attacking = GameEngine.getPlayersInPosition(getPerformer().getTeam(), new String[]{Position.ATTACKING_MIDFIELDER, Position.STRIKER});
-			return new Undefined(choosePlayerByPositioning(attacking));
+			FMPlayer owner = choosePlayerByPositioning(attacking);
+			logger.info(game, minute, owner.getShortName()+" meets the ball");
+			return new Undefined(owner);
 		}else if (result >= 0){
-			logger.info(game, minute, "Corner: heading["+attScore+"] is defended["+defScore+"]");
+			logger.info(game, minute, "Saved by the Goalkeeper! Corner!");
 			return new Corner(getPerformer());
 		}else{
-			logger.info(game, minute, "Wasted: heading["+attScore+"] is defended["+defScore+"]");
+			logger.info(game, minute, "Terrible heading by "+getPerformer().getShortName());
 			return new EndOfAttack(getPerformer(), getPreventer());
 		}
 	}

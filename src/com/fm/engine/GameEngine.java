@@ -7,6 +7,7 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 
+import com.fm.bll.LogManager;
 import com.fm.dal.Game;
 import com.fm.dal.Player;
 import com.fm.dal.Tactic;
@@ -45,6 +46,7 @@ public class GameEngine {
 		for (int j = 0; j < awayTeam.length; j++) 
 			awayTeam[j].setTeam(awayTeam);
 		//attendance should affect home and away team morales
+		LogManager gameLogger = LogManager.getInstance();
 		affectPlayerMoralesWithAttendence(game.getPercentAtt(), homeTeam, awayTeam);
 		for (int attackNum = 0; attackNum < ATTACKS_IN_GAME; attackNum++) {
 			//For each attack, compare midfield skills and randomly select the attacking team
@@ -53,6 +55,11 @@ public class GameEngine {
 			chooseAttackingSide(homeTeam, awayTeam);
 			FMPlayer performer = FMAction.chooseRandomPlayer(getMidfieldPlayers(attackingTeam));
 			performer.setTeam(attackingTeam);
+			if (attackNum == 0)
+				gameLogger.info(game, min, "Game is started.");
+			else if (attackNum == 5)
+				gameLogger.info(game, min, "Second half is started.");
+			gameLogger.info(game, min, performer.getShortName()+" is with the ball.");
 			//After we know which team is attacking, select an action
 			FMAction action = new Undefined(performer);
 			action.setStep(1);
@@ -78,10 +85,11 @@ public class GameEngine {
 					awayTeam[j].increasePlayerFitness(10);
 				for (int j = 0; j < homeTeam.length; j++) 
 					homeTeam[j].increasePlayerFitness(10);
+				gameLogger.info(game,45,"End of first half:"+game.getScore1()+"-"+game.getScore2());
 			}
 			//Finally modify player morales and fitnesses after the attack..
 		}
-		log.info("End Of Game:"+game.getScore1()+"-"+game.getScore2());
+		gameLogger.info(game, 90, "The refree blows the final whistle! "+game.getScore1()+"-"+game.getScore2());
 		//set Performance Magnifiers
 		for (int j = 0; j < awayTeam.length; j++) 
 			awayTeam[j].setPerformanceMagnifier(game.getScore2()-game.getScore1());

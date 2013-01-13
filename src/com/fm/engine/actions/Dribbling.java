@@ -6,7 +6,7 @@ import com.fm.obj.FMPlayer;
 import com.fm.obj.Position;
 
 public class Dribbling extends FMAction {
-	private LogManager logger = new LogManager();
+	private LogManager logger = LogManager.getInstance();
 	public Dribbling(FMPlayer p) {
 		setPerformer(p);
 	}
@@ -17,12 +17,16 @@ public class Dribbling extends FMAction {
 		if (getPreventer() != null)
 			defenderScore = performance(getDefendSkill(getPreventer()));
 		result = compare(performanceScore, defenderScore);
+		logger.info(game, minute, getPerformer().getShortName() + " is with the ball.");
 		if (result >= 0){
 			getPerformer().advance();
-			logger.info(game, minute, "Good dribbling["+performanceScore+"] defender couldnt handle him["+defenderScore+"]");
+			if (getPreventer() != null)
+				logger.info(game, minute, getPerformer().getShortName()+ " passes "+getPreventer().getShortName());
+			else
+				logger.info(game, minute, getPerformer().getShortName()+ " found an opportunity");
 			return new Undefined(getPerformer());
 		}else{
-			logger.info(game, minute, "Good defense["+defenderScore+"], atacker couldnt keep the ball["+performanceScore+"]");
+			logger.info(game, minute, "Superb tackle by "+getPreventer().getShortName());
 			return new EndOfAttack(getPerformer(), getPreventer());
 		}
 	}
@@ -40,9 +44,9 @@ public class Dribbling extends FMAction {
 	@Override
 	public void updateFitnesses() {
 		if (getPerformer() != null)
-			getPerformer().decreasePlayerFitness(8);
+			getPerformer().decreasePlayerFitness(1);
 		if (getPreventer() != null)
-			getPreventer().decreasePlayerFitness(4);
+			getPreventer().decreasePlayerFitness(1);
 	}
 
 	//dribbling(3x) +  agility (2x) + acceleration(2x) + technique (x)

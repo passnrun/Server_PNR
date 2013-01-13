@@ -56,7 +56,7 @@ public class RegisterService {
 		team.setCurrentManager(m.getId());
 		team.setName(m.getTeamName());
 		dao.save(team);
-		NewsManager.create(team);
+		NewsManager.createNews(NewsManager.TYPE_WELLCOME, team, new String[]{});
 		IDList ids = new IDList();
 		ids.setManagerId(m.getId());
 		ids.setTeamId(team.getId());

@@ -17,6 +17,14 @@
 	<servlet-name>GameDetailServlet</servlet-name>
 	<url-pattern>/GameDetail/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+	<servlet-name>NewsServlet</servlet-name>
+	<servlet-class>com.fm.mw.NewsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>NewsServlet</servlet-name>
+	<url-pattern>/News/*</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

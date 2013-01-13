@@ -13,7 +13,7 @@ public class Corner extends FMAction {
 
 	@Override
 	public FMAction perform() {
-		FMPlayer target = choosePlayerByHeading(GameEngine.getPlayersInPosition(getPreventer().getTeam(), 
+		FMPlayer target = choosePlayerByHeading(GameEngine.getPlayersInPosition(getPerformer().getTeam(), 
 				new String[]{Position.DEFENDER, Position.DEFENSIVE_MIDFIELDER, Position.MIDFIELDER, Position.ATTACKING_MIDFIELDER, Position.STRIKER}));
 		return new Heading(target);
 	}

@@ -16,6 +16,7 @@ public class JSPlayerPerformance extends PlayerPerformance implements JSON, Comp
 		sb.append("{")
 		.append("\"name\" :").append("\""+getPlayer().getShortName()+"\"").append(" , ")
 		.append("\"position\" :").append("\""+getPosition()+"\"").append(" , ")
+		.append("\"playerId\" :").append(getPlayer().getId()).append(" , ")
 		.append("\"mins\" :").append(getMins()).append(" , ")
 		.append("\"assist\" :").append(getAssist()).append(" , ")
 		.append("\"goal\" :").append(getGoal()).append(" , ")

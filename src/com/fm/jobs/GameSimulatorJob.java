@@ -53,8 +53,9 @@ public class GameSimulatorJob implements Job {
 			initializaGame(game);
 			GameOutput out = engine.simulate(game, tactic1, tactic2);
 			processGameOutput(out);
-			NewsManager.create(game.getHomeTeam());
-			NewsManager.create(game.getAwayTeam());
+			String result = game.getScore1() + " - " + game.getScore2();
+			NewsManager.createNews(NewsManager.TYPE_GAMERESULT, game.getHomeTeam(), new String[]{game.getAwayTeam().getName(), result});
+			NewsManager.createNews(NewsManager.TYPE_GAMERESULT, game.getAwayTeam(), new String[]{game.getHomeTeam().getName(), result});
 			logger.info("Game["+game.getId()+"] is completed");
 		}
 		running = false;
@@ -124,14 +125,7 @@ public class GameSimulatorJob implements Job {
 		DAO dao = new DAO();
 		dao.save(game);
 		logger.info("Saved game["+game.getId()+"] result: "+game.getHomeTeam().getName() + " - "+game.getAwayTeam().getName() + " : "+ game.getScore1()+"-"+game.getScore2());
-		List<GameDetail> gameDetals = new ArrayList<GameDetail>();
-		gameDetals.addAll(game.getGameDetails());
-		Collections.sort(gameDetals);
-		for (Iterator<GameDetail> iterator = gameDetals.iterator(); iterator.hasNext();) {
-			GameDetail gameDetail = iterator.next();
-			dao.save(gameDetail);
-			logger.info("Saved GameDetail["+gameDetail.getId()+"]");
-		}
+		
 	}
 	private void initializaGame(Game game) {
 		game.setScore1(0);

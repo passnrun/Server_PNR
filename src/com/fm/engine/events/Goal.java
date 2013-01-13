@@ -1,5 +1,6 @@
 package com.fm.engine.events;
 
+import com.fm.bll.LogManager;
 import com.fm.dal.GameDetail;
 import com.fm.engine.actions.Dribbling;
 import com.fm.engine.actions.FMAction;
@@ -29,7 +30,7 @@ public class Goal extends FMAction {
 			game.setScore2(game.getScore2()+1);
 			side = 1;
 		}
-		game.getGameDetails().add(new GameDetail(game, getMinute(), GameDetail.GOAL, getPerformer().getName(),side, 1));
+		LogManager.getInstance().save(new GameDetail(game, getMinute(), GameDetail.GOAL, getPerformer().getName(),side, 1));
 		return null;
 	}
 	@Override

@@ -7,7 +7,7 @@ import com.fm.obj.FMPlayer;
 import com.fm.obj.Position;
 
 public class Crossing extends FMAction {
-	LogManager logger = new LogManager();
+	LogManager logger = LogManager.getInstance();
 	
 	public Crossing(FMPlayer p) {
 		setPerformer(p);
@@ -27,18 +27,19 @@ public class Crossing extends FMAction {
 			defendScore =performance(getDefendSkill(getPreventer()));
 		result = compare(performanceScore, defendScore);
 		String[] oppositeSides = oppositeSides(getPerformer().getCurrentPosition().getSide());
+		logger.info(game, minute, getPerformer().getShortName()+" with the cross!");
 		if (result >= 4){
-			logger.debug(game, minute, "Goal Cross: Great cross["+performanceScore+"], defend["+defendScore+"] couldn't even move.. ");
 			FMPlayer scorer = choosePlayerByHeading(filterForStep(GameEngine.getPlayersInPositionAndSide(getPerformer().getTeam(), new String[]{Position.STRIKER, Position.ATTACKING_MIDFIELDER, Position.MIDFIELDER},oppositeSides)));
 			scorer.setTeam(getPerformer().getTeam());
+			logger.info(game, minute, "Superb chance for "+getPerformer().getShortName());
 			return new Heading(scorer);
 		}else if (result  > 0){
-			logger.debug(game, minute, "Good Cross: cross["+performanceScore+"] couldnt be defended["+defendScore+"] ");
 			FMPlayer scorer = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPositionAndSide(getPerformer().getTeam(), new String[]{Position.STRIKER, Position.ATTACKING_MIDFIELDER, Position.MIDFIELDER}, oppositeSides)));
 			scorer.setTeam(getPerformer().getTeam());
+			logger.info(game, minute, "Into the area... "+getPerformer().getShortName() + " meets the ball.");
 			return new Undefined(scorer);
 		}else{
-			logger.debug(game, minute, "Missed Ball: cross["+performanceScore+"].. good defense["+defendScore+"] ");
+			logger.info(game, minute, "wasted opportunity... "+getPerformer().getShortName() + " sent the ball up to the hills.");
 			return new EndOfAttack(getPerformer(), getPreventer());
 		}
 	}
@@ -69,8 +70,8 @@ public class Crossing extends FMAction {
 	@Override
 	public void updateFitnesses() {
 		if (getPerformer()!=null)
-			getPerformer().decreasePlayerFitness(2);
+			getPerformer().decreasePlayerFitness(1);
 		if (getPreventer()!=null)
-			getPreventer().decreasePlayerFitness(2);
+			getPreventer().decreasePlayerFitness(1);
 	}
 }

@@ -20,6 +20,15 @@ public class GameDAO extends DAO {
 		return games;
 	}
 
+	public List<Game> getGamesByWeek(int leagueId, int seasonId, int week) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		List<Game> games = session.createQuery("from "+Game.class.getName() + " where seasonId = " + seasonId + " and leagueId = "+leagueId + " and week = "+week).list();
+		session.getTransaction().commit();
+		session.close();
+		return games;
+	}
+
 	public List<Game> getGameResults(Integer leagueId, Integer seasonId,Integer minId, Integer maxId) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();

@@ -13,7 +13,7 @@ import com.fm.obj.FMPlayer;
 import com.fm.obj.Position;
 
 public class Shoot extends FMAction{
-	private static LogManager logger = new LogManager();
+	private static LogManager logger = LogManager.getInstance();
 	
 	public Shoot(FMPlayer p) {
 		setPerformer(p);
@@ -22,21 +22,22 @@ public class Shoot extends FMAction{
 	public FMAction perform() {
 		int shootingValue = performance(getActionSkill(getPerformer()));
 		int defendingValue = performance(getDefendSkill(getPreventer()));
-		logger.info(game, minute, getPerformer().getName() + " performs a shoot:"+shootingValue);
-		logger.info(game, minute, getPreventer().getName() + " tries to defend:"+defendingValue);
 		result = compare(shootingValue, defendingValue);
+		logger.info(game, minute, getPerformer().getShortName()+" shoots!");
 		if (result > 0){
-			logger.debug(game, minute, "Goal: Shooting["+shootingValue+"] exceed the goalkeeper action["+defendingValue+"].. in the nets..");
+			logger.info(game, minute, "Great Goal by " + getPerformer().getShortName() + "!");
 			return new Goal(getPerformer());
 		}else if (result == 0){
 			boolean isCorner = (r.nextInt(10)%2)==0;
-			logger.debug(game, minute, "Saved: Shooting["+shootingValue+"] saved by keeper["+defendingValue+"]"+(isCorner?":Corner":""));
-			if(isCorner)
+			if(isCorner){
+				logger.info(game, minute, getPreventer().getShortName()+" prevented the goal, Corner!");
 				return new Corner(getPerformer());
-			else
+			}else{
+				logger.info(game, minute, "Great shoot by " + getPerformer().getShortName()+" but he misses the target!");
 				return new EndOfAttack(getPerformer(), getPreventer());
+			}
 		}else{ //means result < 0
-			logger.debug(game, minute, "Out: Poor Shooting["+shootingValue+"], keeper["+defendingValue+"] closed the angle");
+			logger.debug(game, minute, getPerformer().getShortName()+" missed the opportunity, but "+getPreventer().getShortName()+" left him no space.");
 			return new EndOfAttack(getPerformer(), getPreventer());
 		}
 	}
@@ -59,8 +60,8 @@ public class Shoot extends FMAction{
 	
 	@Override
 	public void updateFitnesses() {
-		getPerformer().decreasePlayerFitness(4);
-		getPreventer().decreasePlayerFitness(4);
+		getPerformer().decreasePlayerFitness(1);
+		getPreventer().decreasePlayerFitness(1);
 	}
 	
 	//finishing (2x) + technique (2x) + creativity(x) + composure(x)

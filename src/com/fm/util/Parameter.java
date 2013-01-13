@@ -1,4 +1,5 @@
 package com.fm.util;
+import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -13,6 +14,17 @@ public class Parameter {
 	private Parameter() {
 	}
 
+	public static void main(String[] args) {
+		System.out.println(getString("news.gameresult.body", new String[]{"A", "B"}));
+	}
+	public static String getString(String key, String[] params) {
+		try {
+			String val = RESOURCE_BUNDLE.getString(key);
+			return MessageFormat.format(val, (Object[])params);
+		} catch (MissingResourceException e) {
+			return null;
+		}
+	}
 	public static String getString(String key) {
 		try {
 			return RESOURCE_BUNDLE.getString(key);

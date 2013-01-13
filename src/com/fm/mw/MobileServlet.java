@@ -21,6 +21,7 @@ import com.fm.mw.obj.JSONString;
 import com.fm.mw.service.FixtureService;
 import com.fm.mw.service.GameDetailService;
 import com.fm.mw.service.GameResultService;
+import com.fm.mw.service.NewsService;
 import com.fm.mw.service.PlayerService;
 import com.fm.mw.service.RegisterService;
 import com.fm.mw.service.ResignService;
@@ -90,6 +91,8 @@ public static void main(String[] args) {
 		if (jsonReq.getService().equals("saveSquad"))
 			return SquadService.save((Map<String, Object>)jsonReq.getData());
 		
+		if (jsonReq.getService().equals("news"))
+			return NewsService.process((Map<String, Object>)jsonReq.getData());
 		
 		if (jsonReq.getService().equals("schedule")){
 			JobScheduler scheduler = new JobScheduler();

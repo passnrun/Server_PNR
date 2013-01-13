@@ -1,5 +1,7 @@
 package com.fm.bll;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +16,7 @@ import com.fm.dal.ModifyCount;
 import com.fm.dal.Season;
 import com.fm.dal.Team;
 import com.fm.dao.DAO;
+import com.fm.dao.GameDAO;
 import com.fm.dao.ModifyCountDAO;
 import com.fm.dao.TeamDAO;
 import com.fm.mobile.IPhoneNotificationHandler;
@@ -40,11 +43,20 @@ public class LeagueManager {
 		generateFixture(season.getId(), leagueId);
 		league.setStatus(League.STATUS_STARTED);
 		teamDAO.save(league);
-		for (Iterator iterator = teams.iterator(); iterator.hasNext();) {
-			Team team = (Team) iterator.next();
-			NewsManager.create(team);
-		}
+		createNewsForTeams(season.getId(), leagueId);
 		return new JSONResponse(0, new JSONString("Done"));
+	}
+
+	private static void createNewsForTeams(int seasonId, int leagueId) {
+		GameDAO gameDao = new GameDAO();
+		League league = (League)gameDao.findById(League.class, leagueId);
+		List<Game> firstWeekGames = gameDao.getGamesByWeek(leagueId, seasonId, 1);
+		DateFormat format = new SimpleDateFormat("dd.MM.yy");
+		for (Iterator iterator = firstWeekGames.iterator(); iterator.hasNext();) {
+			Game game = (Game) iterator.next();
+			NewsManager.createNews(NewsManager.TYPE_FIXTURE, game.getHomeTeam(), new String[]{league.getName(), game.getAwayTeam().getName(), format.format(game.getGameDate())});
+			NewsManager.createNews(NewsManager.TYPE_FIXTURE, game.getAwayTeam(), new String[]{league.getName(), game.getHomeTeam().getName(), format.format(game.getGameDate())});
+		}
 	}
 
 	private static void generateFixture(int seasonId, int leagueId) {
@@ -53,6 +65,7 @@ public class LeagueManager {
 		int numOfGames = (league.getSize()-1)*2;
 		Team[] teams = choseTeamsFromPot(leagueId);
 		Calendar gameDate = DateUtil.getFirstGamePlayDate(Parameter.getInt("Fixture.FirstGameStartsIn"), Parameter.getInt("Fixture.GameTime"));
+		
 		for (int i = 0; i < numOfGames; i++) {
 			createGamesForWeek(dao, teams, gameDate, i+1, seasonId, leagueId);
 			gameDate.add(Calendar.DATE, Parameter.getInt("Fixture.DaysBetweenGames"));

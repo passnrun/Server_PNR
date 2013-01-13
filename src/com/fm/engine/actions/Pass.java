@@ -9,7 +9,7 @@ import com.fm.obj.FMPlayer;
 import com.fm.obj.Position;
 
 public class Pass extends FMAction {
-	LogManager logger = new LogManager();
+	LogManager logger = LogManager.getInstance();
 	
 	public Pass(FMPlayer p) {
 		setPerformer(p);
@@ -27,35 +27,38 @@ public class Pass extends FMAction {
 		int defendScore = 0;
 		if (getPreventer()!=null){
 			defendScore = performance(getDefendSkill(getPreventer()));
-			logger.info(game, minute, getPerformer().getName() + " performs a pass["+performanceScore +"], while defender["+getPreventer().getName()+"] tries to defend["+defendScore+"]");
 		}
+		
 		result = compare(performanceScore, defendScore);
 		if (result >= 4){
-			logger.debug(game, minute, "Goal Pass: Great pass["+performanceScore+"], defend["+defendScore+"] couldn't even move.. ");
 			FMPlayer scorer = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), 
 					new String[]{Position.STRIKER, Position.ATTACKING_MIDFIELDER, Position.MIDFIELDER})));
 			scorer.setTeam(getPerformer().getTeam());
+			logger.info(game, minute, "Superb pass by "+getPerformer().getShortName());
 			return new Shoot(scorer);
 		}else if (result  > 0){
-			logger.debug(game, minute, "Good Pass: pass["+performanceScore+"] couldnt be defended["+defendScore+"] ");
 			FMPlayer scorer = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), 
 					new String[]{Position.STRIKER, Position.ATTACKING_MIDFIELDER, Position.MIDFIELDER})));
 			scorer.setTeam(getPerformer().getTeam());
+			logger.info(game, minute, "Well played by "+getPerformer().getShortName());
 			return new Undefined(scorer);
 		}else if (result == 0){
-			logger.debug(game, minute, "Short Pass: short pass["+performanceScore+"] because of good defense["+defendScore+"] ");
 			FMPlayer scorer = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), 
 					new String[]{getPerformer().getCurrentPosition().getPosition()})));
 			scorer.setTeam(getPerformer().getTeam());
+			logger.info(game, minute, getPerformer().getShortName() + " plays to " + scorer.getShortName());
 			return new Undefined(scorer);
 		} else if (result > -3){
-			logger.debug(game, minute, "Back Pass: back pass["+performanceScore+"] because of good defense["+defendScore+"] ");
 			FMPlayer scorer = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), 
 					new String[]{Position.DEFENDER, Position.GOALKEEPER})));
 			scorer.setTeam(getPerformer().getTeam());
+			logger.info(game, minute, getPerformer().getShortName() + " plays back to " + scorer.getShortName());
 			return new Undefined(scorer);
 		}else{
-			logger.debug(game, minute, "Missed Ball: terrible pass["+performanceScore+"].. good defense["+defendScore+"] ");
+			if (getPreventer() != null)
+				logger.info(game, minute, "Intercepted by "+getPreventer().getShortName());
+			else
+				logger.info(game, minute, getPerformer().getShortName()+" wastes the ball.");
 			return new EndOfAttack(getPerformer(), getPreventer());
 			
 		}

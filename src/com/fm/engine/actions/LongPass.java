@@ -9,7 +9,7 @@ import com.fm.obj.FMPlayer;
 import com.fm.obj.Position;
 
 public class LongPass extends FMAction {
-	private static LogManager logger = new LogManager();
+	private static LogManager logger = LogManager.getInstance();
 	
 	public LongPass(FMPlayer p) {
 		setPerformer(p);
@@ -20,27 +20,29 @@ public class LongPass extends FMAction {
 		int defenderScore = 0;
 		if (getPreventer() != null){
 			defenderScore = performance(getDefendSkill(getPreventer()));
-			logger.info(game, minute, getPerformer().getName() + " performs a long pass["+performanceScore+"] while defender tries to prevent["+defenderScore+"]");
 		}
+		logger.info(game, minute, getPerformer().getShortName() + " performs a long pass...");
 		result = compare(performanceScore, defenderScore);
 		if (result >= 4){
-			logger.debug(game, minute, "Goal Pass: Great pass["+performanceScore+"], defend["+defenderScore+"] couldn't even move.. ");
 			FMPlayer target = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), 
 					new String[]{Position.STRIKER, Position.ATTACKING_MIDFIELDER, Position.MIDFIELDER})));
 			target.setTeam(getPerformer().getTeam());
+			logger.debug(game, minute, "Great Pass! " + target.getShortName() +  " has the opportunity.");
 			return new Shoot(target);
 		}else if (result  > 1){
-			logger.debug(game, minute, "Good Pass: pass["+performanceScore+"] couldnt be defended["+defenderScore+"] ");
 			FMPlayer target = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), new String[]{Position.findNextPosition(getPerformer().getCurrentPosition().getPosition(), 2)})));
 			target.setTeam(getPerformer().getTeam());
 			return new Undefined(target);
 		}else if (result >= 0){
-			logger.debug(game, minute, "Long Pass: pass["+performanceScore+"] couldnt be defended["+defenderScore+"] ");
 			FMPlayer target = choosePlayerByPositioning(filterForStep(GameEngine.getPlayersInPosition(getPerformer().getTeam(), new String[]{Position.findNextPosition(getPerformer().getCurrentPosition().getPosition(), 1)})));
 			target.setTeam(getPerformer().getTeam());
 			return new Undefined(target);
 		}else{
-			logger.debug(game, minute, "Missed Ball: pass["+performanceScore+"] not arrives to arget, good defense["+defenderScore+"] ");
+			if (getPreventer() != null)
+				logger.info(game, minute, getPreventer().getShortName()+" stole the ball! What a defence!");
+			else
+				logger.debug(game, minute, "Terrible pass by "+getPerformer().getShortName()+", what was he thinking!");
+			
 			return new EndOfAttack(getPerformer(), getPreventer());
 		}
 	}
@@ -55,9 +57,9 @@ public class LongPass extends FMAction {
 	@Override
 	public void updateFitnesses() {
 		if (getPerformer() != null)
-			getPerformer().decreasePlayerFitness(3);
+			getPerformer().decreasePlayerFitness(1);
 		if (getPreventer() != null)
-			getPreventer().decreasePlayerFitness(3);
+			getPreventer().decreasePlayerFitness(1);
 	}
 
 	//passing(2x) + creativity (x) + technique (x)

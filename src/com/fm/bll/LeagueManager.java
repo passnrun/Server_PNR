@@ -11,15 +11,11 @@ import org.apache.log4j.Logger;
 
 import com.fm.dal.Game;
 import com.fm.dal.League;
-import com.fm.dal.Manager;
-import com.fm.dal.ModifyCount;
 import com.fm.dal.Season;
 import com.fm.dal.Team;
 import com.fm.dao.DAO;
 import com.fm.dao.GameDAO;
-import com.fm.dao.ModifyCountDAO;
 import com.fm.dao.TeamDAO;
-import com.fm.mobile.IPhoneNotificationHandler;
 import com.fm.mw.obj.JSONResponse;
 import com.fm.mw.obj.JSONString;
 import com.fm.util.DateUtil;
@@ -28,22 +24,25 @@ import com.fm.util.Parameter;
 public class LeagueManager {
 	private static Logger logger = Logger.getLogger(LeagueManager.class);
 	
-	public static JSONResponse initiateLeague(int leagueId){
+	public static Integer numberOfTeamsInLeague(int leagueId)
+	{
 		TeamDAO teamDAO = new TeamDAO();
-		logger.info("initating league["+leagueId+"]");
-		League league = (League)teamDAO.findById(League.class, leagueId);
+		return teamDAO.getLeagueTeamCount(leagueId);
+	}
+	
+	public static JSONResponse initiateLeague(League league, Season season){
+		TeamDAO teamDAO = new TeamDAO();
 		if (league == null)
-			return new JSONResponse(-1, new JSONString("League["+leagueId+"] is not found"));
+			return new JSONResponse(-1, new JSONString("League is not found"));
+		logger.info("initating league["+league.getId()+"]");
 		if (league.getStatus() != League.STATUS_NEWSEASON)
-			return new JSONResponse(-1, new JSONString("League["+leagueId+"] is already started"));
-		Season season = SeasonManager.createSeason();
-		logger.info("Season["+season.getId()+"] is created");
-		List<Team> teams = teamDAO.getLeagueTeams(leagueId);
-		TeamManager.createLeagueTeamRecords(teams, season.getId(), leagueId);
-		generateFixture(season.getId(), leagueId);
+			return new JSONResponse(-1, new JSONString("League["+league.getId()+"] is already started"));
+		List<Team> teams = teamDAO.getLeagueTeams(league.getId());
+		TeamManager.createLeagueTeamRecords(teams, season.getId(), league.getId());
+		generateFixture(season.getId(), league.getId());
 		league.setStatus(League.STATUS_STARTED);
 		teamDAO.save(league);
-		createNewsForTeams(season.getId(), leagueId);
+		createNewsForTeams(season.getId(), league.getId());
 		return new JSONResponse(0, new JSONString("Done"));
 	}
 
@@ -96,11 +95,10 @@ public class LeagueManager {
 		return teams;
 	}
 
-	public static int generateNewLeague(League parent, String name, String country){
-		logger.info("Generation the league["+name+"] "+(parent!=null?"under ["+parent.getName()+"]":""));
+	public static int generateNewLeague(int level, String name, String country){
+		logger.info("Generation the league["+name+"]");
 		DAO dao = new DAO();
-		int level = parent != null ? parent.getLevel() + 1 : 1;
-		League league = fillLeagueInformation(level, name, parent);
+		League league = fillLeagueInformation(level, name);
 		boolean ok = true;
 		dao.save(league);
 		for (int i = 0; ok && i < league.getSize(); i++) 
@@ -108,22 +106,15 @@ public class LeagueManager {
 		return league.getId();
 	}
 
-	private static League fillLeagueInformation(int level, String name, League parent) {
+	private static League fillLeagueInformation(int level, String name) {
 		League league = new League();
 		league.setLevel(level);
 		league.setName(name);
-		if (parent != null)
-			league.setParent(parent);
 		league.setPlayoffs(Parameter.getInt("league."+level+".playoffs"));
 		league.setPromotions(Parameter.getInt("league."+level+".promotions"));
 		league.setRelegations(Parameter.getInt("league."+level+".relegations"));
 		league.setSize(Parameter.getInt("league."+level+".size"));
 		league.setStatus(League.STATUS_NEWSEASON);
 		return league;
-	}
-	
-	public static void main(String[] args) {
-//		LeagueManager.generateNewLeague(null, "League 1", "turkey");
-		LeagueManager.initiateLeague(2);
 	}
 }

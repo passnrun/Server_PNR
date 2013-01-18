@@ -8,5 +8,8 @@
             <column name="ID" />
             <generator class="increment" />
         </id>
+        <property name="endDate" type="timestamp">
+            <column name="END_DATE" length="0" />
+        </property>
     </class>
 </hibernate-mapping>

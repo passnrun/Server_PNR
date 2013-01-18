@@ -17,6 +17,7 @@ public class Team implements java.io.Serializable {
 	private String color2;
 	private Integer currentManager;
 	private Integer currentLeague;
+	private Integer currentLevel;
 	private Set<Game> gamesForTeam1 = new HashSet<Game>(0);
 	private Set<Tactic> tactics = new HashSet<Tactic>(0);
 	private Set<Game> gamesForTeam2 = new HashSet<Game>(0);
@@ -132,6 +133,14 @@ public class Team implements java.io.Serializable {
 
 	public void setCurrentLeague(Integer currentLeague) {
 		this.currentLeague = currentLeague;
+	}
+
+	public Integer getCurrentLevel() {
+		return currentLevel;
+	}
+
+	public void setCurrentLevel(Integer currentLevel) {
+		this.currentLevel = currentLevel;
 	}
 
 }

@@ -1,13 +1,12 @@
 package com.fm.mw.service;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.fm.bll.LeagueManager;
 import com.fm.bll.NewsManager;
 import com.fm.dal.Manager;
 import com.fm.dal.Team;
@@ -33,7 +32,7 @@ public class RegisterService {
 	public static Manager convert2Manager(Map<String, Object> data) throws ParseException{
 		Manager m = new Manager();
 		Map<String, Object> map = (Map<String, Object>)data.get("manager");
-		DateFormat format = new SimpleDateFormat("mmMMyyyy");
+//		DateFormat format = new SimpleDateFormat("mmMMyyyy");
 		m.setFirstname((String)map.get("firstName"));
 		m.setLastname((String)map.get("lastName"));
 		m.setTeamName((String)map.get("team"));
@@ -49,8 +48,13 @@ public class RegisterService {
 		TeamDAO dao = new TeamDAO();
 		m.setRegisterDate(new Date());
 		Team team = dao.chooseTeamWithoutManager();
-		if (team == null)
+		if (team == null){
+			LeagueManager.generateNewLeague(1, "Amator League", m.getNationality());
+			team = dao.chooseTeamWithoutManager();
+		}
+		if (team == null){
 			return new JSONResponse(JSONResponse.ERROR_NO_TEAM_FOUND, new JSONString("No available team found"));
+		}
 		m.setCurrentTeam(team.getId());
 		dao.save(m);
 		team.setCurrentManager(m.getId());

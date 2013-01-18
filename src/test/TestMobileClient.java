@@ -11,8 +11,8 @@ import com.fm.util.JSONParser;
 public class TestMobileClient {
 
 	public static void main(String[] args) throws Exception {
-//		URLConnection connection = new URL("http://localhost:8080/PassNRun_v1/Mobile").openConnection();
-		URLConnection connection = new URL("http://pickledphotos.com/passnrun/Mobile").openConnection();
+		URLConnection connection = new URL("http://localhost:8080/PassNRun_v1/Mobile").openConnection();
+//		URLConnection connection = new URL("http://pickledphotos.com/passnrun/Mobile").openConnection();
 	    // Let the run-time system (RTS) know that we want input.
 	    connection.setDoInput (true);
 	    // Let the RTS know that we want to do output.
@@ -23,8 +23,8 @@ public class TestMobileClient {
 	    connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 	    // Send POST output.
 	    DataOutputStream printout = new DataOutputStream(connection.getOutputStream ());
-//	    String content ="{\"service\" : \"register\",\"manager\" : {\"firstName\" : \"Fatih\",\"lastName\" : \"Terim\",\"nationality\" : \"turkey\",\"language\" : \"turkish\",\"birthdate\" : \"22081982\",\"device\" : \"iphone\",\"deviceId\" : \"dmskfmdsjfnskhfdskfzbndshkfbsdhkfbs\"}}";
-	    String content = "{\"service\" : \"createLeague\", \"name\" : \"Super Leage\", \"country\":\"turkey\"}";
+	    String content ="{\"service\" : \"register\",\"manager\" : {\"firstName\" : \"Fatih\",\"team\" : \"Belhanda\",\"lastName\" : \"Terim\",\"nationality\" : \"turkey\",\"language\" : \"turkish\",\"birthdate\" : \"22081982\",\"device\" : \"iphone\",\"deviceId\" : \"dmskfmdsjfnskhfdskfzbndshkfbsdhkfbs\"}}";
+//	    String content = "{\"service\" : \"createLeague\", \"name\" : \"Super Leage\", \"country\":\"turkey\"}";
 //	    String content = "{\"service\" : \"initiate\", \"leagueId\" : 1}";
 //	    String content = "{\"service\" : \"resign\", \"id\" : 3}";
 //	    String content = "{\"service\" : \"createPlayers\", \"manager\" : {\"name\" : \"Super Leage\", \"country\":\"turkey\"}}";

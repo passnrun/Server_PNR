@@ -1,5 +1,7 @@
 package com.fm.dal;
 
+import java.util.Date;
+
 // Generated Nov 24, 2011 11:03:11 AM by Hibernate Tools 3.4.0.CR1
 
 /**
@@ -8,6 +10,15 @@ package com.fm.dal;
 public class Season implements java.io.Serializable {
 
 	private int id;
+	private Date endDate;
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 
 	public Season() {
 	}

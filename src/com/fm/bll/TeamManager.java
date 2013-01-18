@@ -1,7 +1,10 @@
 package com.fm.bll;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
@@ -14,16 +17,49 @@ import com.fm.dal.Team;
 import com.fm.dal.TeamPlayer;
 import com.fm.dal.TeamTemplate;
 import com.fm.dao.DAO;
+import com.fm.dao.LeagueTeamDAO;
 import com.fm.dao.PlayerDAO;
+import com.fm.dao.TeamDAO;
 import com.fm.dao.TeamTemplateDAO;
 import com.fm.util.Parameter;
 
 public class TeamManager {
 	Logger logger = Logger.getLogger(TeamManager.class);
 	
+	public static Integer getAvailableTeamCount(){
+		TeamDAO dao = new TeamDAO();
+		return dao.getAvailableTeamCount();
+	}
+	public static void changeLeague(int teamId, int delta){
+		DAO dao = new DAO();
+		Team team = (Team)dao.findById(Team.class, teamId);
+		team.setCurrentLeague(0);
+		team.setCurrentLevel(team.getCurrentLevel() + delta);
+		dao.save(team);
+	}
+	public static Map<Integer, List<Team>> getTeamsWithoutLeague(){
+		TeamDAO dao = new TeamDAO();
+		Map<Integer, List<Team>> teamMap = new HashMap<Integer, List<Team>>();
+		List<Team> teams = dao.getLeagueTeams(0);
+		for (Iterator iterator = teams.iterator(); iterator.hasNext();) {
+			Team team = (Team) iterator.next();
+			Integer key = team.getCurrentLevel();
+			List<Team> teamList = teamMap.get(key);
+			if (teamList == null){
+				teamList = new ArrayList<Team>();
+				teamMap.put(key, teamList);
+			}
+			teamList.add(team);
+		}
+		return teamMap;
+	}
+	public static List<LeagueTeam> getLeagueTable(int seasonId, int leagueId){
+		LeagueTeamDAO dao = new LeagueTeamDAO();
+		return dao.getLeagueTable(leagueId, seasonId);
+	}
 	public static boolean generateTeam(League league, String country){
 		DAO dao = new DAO();
-		Team team = fillTeamInformation(country, league.getId());
+		Team team = fillTeamInformation(country, league);
 		Stadium stadium = generateStadium(league.getLevel(), team.getName());
 		team.setStadium(stadium);
 		dao.save(team);
@@ -48,13 +84,14 @@ public class TeamManager {
 		return stadium;
 	}
 
-	private static Team fillTeamInformation(String country, int leagueId) {
+	private static Team fillTeamInformation(String country, League league) {
 		TeamTemplate teamTemplate = choseRandomTeamTemplate(country);
 		Team team = new Team();
 		team.setName(teamTemplate.getTeam());
 		team.setColor1(teamTemplate.getColor1());
 		team.setColor2(teamTemplate.getColor2());
-		team.setCurrentLeague(leagueId);
+		team.setCurrentLeague(league.getId());
+		team.setCurrentLevel(league.getLevel());
 		return team;
 	}
 

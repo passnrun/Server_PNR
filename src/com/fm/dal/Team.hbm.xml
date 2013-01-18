@@ -26,6 +26,9 @@
         <property name="currentLeague" type="java.lang.Integer">
             <column name="CURRENT_LEAGUE" />
         </property>
+        <property name="currentLevel" type="java.lang.Integer">
+            <column name="CURRENT_LEVEL" />
+        </property>
         <set name="gamesForTeam1" table="GAME" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="TEAM1" />

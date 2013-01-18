@@ -8,7 +8,7 @@ import com.fm.dal.Season;
 
 public class SeasonDAO extends DAO {
 
-	public Season getLastSeason() {
+	public Season getCurrentSeason() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		List<Season> seasons = session.createQuery("from "+Season.class.getName() + " order by id desc").list();

@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import test.LoadPlayerTemplate;
 
 import com.fm.bll.LeagueManager;
+import com.fm.bll.SeasonManager;
 import com.fm.jobs.JobScheduler;
 import com.fm.mw.obj.JSONRequest;
 import com.fm.mw.obj.JSONResponse;
@@ -105,12 +106,11 @@ public static void main(String[] args) {
 		}		
 		if (jsonReq.getService().equals("createLeague")){
 			Map<String, Object> map = (Map<String, Object>)jsonReq.getData();
-			int id = LeagueManager.generateNewLeague(null, (String)map.get("name"), (String) map.get("country"));
+			int id = LeagueManager.generateNewLeague(0, (String)map.get("name"), (String) map.get("country"));
 			return new JSONResponse(0, new JSONString("League:"+id));
 		}
 		if (jsonReq.getService().equals("initiate")){
-			Map<String, Object> map = (Map<String, Object>)jsonReq.getData();
-			return LeagueManager.initiateLeague(Integer.parseInt((String)map.get("leagueId")));
+			return SeasonManager.initSeason();
 		}
 		if (jsonReq.getService().equals("createPlayers")){
 			try {

@@ -1,0 +1,13 @@
+Leagues
+During registeration, manager will be associated with the first (order by currentLevel, id) team without manager. 
+In case no available team is found, a new league (level 1) will be created, and the system will try to find a team again.
+
+After League Job
+A job that runs daily will go over finished leagues. This will,
+ + find the promoted teams, and set their currentLeague to 0, and currentLevel to currentLevel +1
+ + find regelated teams, and set their currentLeague to 0, and currentLevel to currentLevel -1
+ 
+Then, will try to associate teams without league (currentLeague = 0) with an existing league.
+In case no league can be found in the specific level, a new one will be created.
+
+At the end of the job, a new season will be created, and all the leagues will be initialized.

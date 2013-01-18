@@ -21,7 +21,11 @@ public class JSONResponse implements JSON{
 		result = r;
 		data = d;
 	}
-
+	
+	public boolean isSuccessful(){
+		return result == 0;
+	}
+	
 	@Override
 	public String toJSON() {
 		String str = "{ \"result\" : "+result+", \"data\" : "+data.toJSON()+" }";

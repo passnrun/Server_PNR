@@ -95,14 +95,13 @@ public class LeagueManager {
 		return teams;
 	}
 
-	public static int generateNewLeague(int level, String name, String country){
+	public static int generateNewLeague(int level, String name, String country, boolean isCreateTeams){
 		logger.info("Generation the league["+name+"]");
 		DAO dao = new DAO();
 		League league = fillLeagueInformation(level, name);
-		boolean ok = true;
 		dao.save(league);
-		for (int i = 0; ok && i < league.getSize(); i++) 
-			ok = TeamManager.generateTeam(league, country);
+		for (int i = 0; isCreateTeams && i < league.getSize(); i++) 
+			isCreateTeams = TeamManager.generateTeam(league, country);
 		return league.getId();
 	}
 

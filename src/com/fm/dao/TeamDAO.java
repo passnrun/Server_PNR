@@ -15,21 +15,29 @@ public class TeamDAO extends DAO{
 	public Integer getAvailableTeamCount() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		List<Object[]> values = session.createQuery("select count(*) from "+Team.class.getName() + " where currentManager = 0").list();
+		List<Object> values = session.createQuery("select count(*) from "+Team.class.getName() + " where currentManager = 0").list();
 		session.getTransaction().commit();
 		session.close();
-		if (values != null && values.size() > 0)
-			return (Integer)values.get(0)[0];
+		if (values != null && values.size() > 0){
+			Long l = (Long)values.get(0);
+			return l.intValue();
+		}
 		return 0;
+	}
+	public static void main(String[] args) {
+		TeamDAO dao = new TeamDAO();
+		System.out.println(dao.getLeagueTeamCount(1));
 	}
 	public Integer getLeagueTeamCount(int leagueId) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		List<Object[]> values = session.createQuery("select count(*) from "+Team.class.getName() + " where currentLeague = " + leagueId).list();
+		List<Object> values = session.createQuery("select count(*) from "+Team.class.getName() + " where currentLeague = " + leagueId).list();
 		session.getTransaction().commit();
 		session.close();
-		if (values != null && values.size() > 0)
-			return (Integer)values.get(0)[0];
+		if (values != null && values.size() > 0){
+			Long l = (Long)values.get(0);
+			return l.intValue();
+		}
 		return 0;
 	}
 	public List<Team> getLeagueTeams(int leagueId) {
@@ -65,12 +73,4 @@ public class TeamDAO extends DAO{
 			return null;
 	}
 	
-	public static void main(String[] args) {
-		TeamDAO dao = new TeamDAO();
-		List<Team> teams = dao.getLeagueTeams(1);
-		for (Iterator iterator = teams.iterator(); iterator.hasNext();) {
-			Team team = (Team) iterator.next();
-			System.out.println(team.getName());
-		}
-	}
 }

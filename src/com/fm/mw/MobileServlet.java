@@ -106,7 +106,7 @@ public static void main(String[] args) {
 		}		
 		if (jsonReq.getService().equals("createLeague")){
 			Map<String, Object> map = (Map<String, Object>)jsonReq.getData();
-			int id = LeagueManager.generateNewLeague(0, (String)map.get("name"), (String) map.get("country"));
+			int id = LeagueManager.generateNewLeague(0, (String)map.get("name"), (String) map.get("country"), true);
 			return new JSONResponse(0, new JSONString("League:"+id));
 		}
 		if (jsonReq.getService().equals("initiate")){

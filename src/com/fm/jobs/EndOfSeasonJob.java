@@ -24,6 +24,11 @@ import com.fm.util.Parameter;
 
 public class EndOfSeasonJob implements Job {
 	Logger logger = Logger.getLogger(EndOfSeasonJob.class);
+	
+	public static void main(String[] args) throws JobExecutionException {
+		EndOfSeasonJob job = new EndOfSeasonJob();
+		job.execute(null);
+	}
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		Season season = SeasonManager.getCurrentSeason();
@@ -39,6 +44,8 @@ public class EndOfSeasonJob implements Job {
 		for (Iterator iterator = leagues.iterator(); iterator.hasNext();) {
 			League league = (League) iterator.next();
 			placeTeamsToLeague(league);
+			league.setStatus(League.STATUS_NEWSEASON);
+			dao.save(league);
 		}
 		logger.info("All Leagues are filled..");
 		Map<Integer, List<Team>> teamsWithoutLeague = TeamManager.getTeamsWithoutLeague();
@@ -55,7 +62,7 @@ public class EndOfSeasonJob implements Job {
 		int availableTeams = TeamManager.getAvailableTeamCount();
 		DAO dao = new DAO();
 		while(availableTeams < Parameter.getInt("min_available_teams")){
-			int leagueId = LeagueManager.generateNewLeague(1, "Amatour League", null);
+			int leagueId = LeagueManager.generateNewLeague(1, "Amatour League", null, true);
 			League league = (League)dao.findById(League.class, leagueId);
 			availableTeams+=league.getSize();
 		}
@@ -63,20 +70,28 @@ public class EndOfSeasonJob implements Job {
 
 	private void processTeamsWithoutLeague(Map<Integer, List<Team>> teamsWithoutLeague) {
 		DAO dao = new DAO();
-		for (Iterator iterator = teamsWithoutLeague.entrySet().iterator(); iterator.hasNext();) {
-			Integer level = (Integer) iterator.next();
+		for (Iterator iterator = teamsWithoutLeague.keySet().iterator(); iterator.hasNext();) {
+			Object obj = iterator.next();
+			Integer level = (Integer) obj;
 			List<Team> teams = teamsWithoutLeague.get(level);
-			int leagueId = LeagueManager.generateNewLeague(level, "League L"+level, null);
+			int leagueId = LeagueManager.generateNewLeague(level, "League L"+level, null, false);
 			League league = (League)dao.findById(League.class, leagueId);
-			for (int i = 0; i < teams.size(); i++) {
-				Team t = (Team)teams.get(i);
+			int teamsInLeague = 0;
+			while(teams.size() > 0)
+			{
+				Team t = (Team)teams.remove(0);
 				t.setCurrentLeague(leagueId);
+				dao.save(t);
+				teamsInLeague++;
 				//If this is the last team for league, create new one
-				if (i == league.getSize() - 1){
-					leagueId = LeagueManager.generateNewLeague(level, "League L"+level, null);
+				if (teamsInLeague >= league.getSize()){
+					leagueId = LeagueManager.generateNewLeague(level, "League L"+level, null, false);
 					league = (League)dao.findById(League.class, leagueId);
+					teamsInLeague = 0;
 				}
 			}
+			for (int i = 0; i < league.getSize() - teamsInLeague; i++) 
+				TeamManager.generateTeam(league, null);
 		}
 	}
 

@@ -49,7 +49,7 @@ public class RegisterService {
 		m.setRegisterDate(new Date());
 		Team team = dao.chooseTeamWithoutManager();
 		if (team == null){
-			LeagueManager.generateNewLeague(1, "Amator League", m.getNationality());
+			LeagueManager.generateNewLeague(1, "Amator League", m.getNationality(), true);
 			team = dao.chooseTeamWithoutManager();
 		}
 		if (team == null){

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import com.fm.dal.Game;
 import com.fm.engine.GameEngine;
+import com.fm.engine.events.Faul;
 import com.fm.obj.Alternative;
 import com.fm.obj.FMPlayer;
 import com.fm.obj.Position;
@@ -94,7 +95,7 @@ public abstract class FMAction {
 		List<FMPlayer> list = new ArrayList<FMPlayer>();
 		for (Iterator<FMPlayer> iterator = players.iterator(); iterator.hasNext();) {
 			FMPlayer player = iterator.next();
-			if (player.getUnavailableOn() != getStep())
+			if (player.isUnavailable(getStep()))
 				list.add(player);
 		}
 		return list;
@@ -186,6 +187,7 @@ public abstract class FMAction {
 		float diff = (float)(attackingScore-defenderScore)/oneUnit;
 		return Math.round(diff);
 	}
+	
 
 	public void setGame(Game game) {
 		this.game = game;

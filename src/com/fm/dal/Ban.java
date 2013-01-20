@@ -20,13 +20,11 @@ public class Ban implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Ban(int id, Integer playerId, Integer gameId, Integer bannedFor,
-			Integer banPayed) {
-		this.id = id;
+	public Ban(Integer playerId, Integer gameId, Integer bannedFor) {
 		this.playerId = playerId;
 		this.gameId = gameId;
 		this.bannedFor = bannedFor;
-		this.banPayed = banPayed;
+		this.banPayed = 0;
 	}
 
 	public int getId() {

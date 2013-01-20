@@ -22,6 +22,7 @@ public class Player implements java.io.Serializable {
 	private Integer fitness;
 	private Integer morale;
 	private Integer quality;
+	private Integer banned;
 	private String  latestForm;
 	private PlayerSkill playerSkill;
 	private transient Team teamObj;
@@ -188,6 +189,12 @@ public class Player implements java.io.Serializable {
 	}
 	public void setTeamObj(Team team) {
 		this.teamObj = team;
+	}
+	public Integer getBanned() {
+		return banned;
+	}
+	public void setBanned(Integer banned) {
+		this.banned = banned;
 	}
 
 }

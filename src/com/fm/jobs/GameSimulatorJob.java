@@ -1,8 +1,6 @@
 package com.fm.jobs;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +12,7 @@ import org.quartz.JobExecutionException;
 
 import com.fm.bll.NewsManager;
 import com.fm.bll.TacticsManager;
+import com.fm.dal.Ban;
 import com.fm.dal.Game;
 import com.fm.dal.GameDetail;
 import com.fm.dal.Player;
@@ -89,6 +88,10 @@ public class GameSimulatorJob implements Job {
 			}
 			p.setMorale(totalMorale/5);
 			p.setFitness(team[j].getFitness());
+			if (team[j].getRed() > 0){
+				NewsManager.createNews(type, team, params);
+				p.setBanned(2);
+			}
 			dao.save(p);
 		}
 		
@@ -117,7 +120,11 @@ public class GameSimulatorJob implements Job {
 			perf.setTeamId(player.getCurrentTeam());
 			perf.setMorale(player.getMorale());
 			perf.setPosition(player.getCurrentPosition().toString());
+			perf.setYellow(player.getYellows());
+			perf.setRed(player.getRed());
 			dao.save(perf);
+			if (player.getRed() > 0)
+				dao.save(new Ban(player.getId(), game.getId(), 2));
 		}
 	}
 	

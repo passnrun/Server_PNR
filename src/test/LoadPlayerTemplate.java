@@ -2,6 +2,7 @@ package test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,9 @@ public class LoadPlayerTemplate {
 	static List<String> countries = new ArrayList<String>();
 	
 	public static void loadPlayerNames() throws Exception {
-		BufferedReader reader = new BufferedReader(new FileReader(Parameter.getString("templatefile_path")));
+		FileReader filereader = new FileReader(Parameter.getString("templatefile_path"));
+		System.out.println("File Encoding:"+filereader.getEncoding());
+		BufferedReader reader = new BufferedReader(filereader);
 		String line = reader.readLine();
 		DAO dao = new DAO();
 		while (line != null){
@@ -56,7 +59,11 @@ public class LoadPlayerTemplate {
 	}
 
 	private static String toUTF(String val) {
-		return URLDecoder.decode(val);
+		try {
+			return URLDecoder.decode(val, "utf8");
+		} catch (UnsupportedEncodingException e) {
+			return URLDecoder.decode(val);
+		}
 	}
 
 	private static boolean hasPlayerInfo(String line) {

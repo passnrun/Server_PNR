@@ -16,6 +16,8 @@ public class FMPlayer extends Player {
 	private int performance = 60;
 	private int perfMagnifier=100;
 	private int goals=0;
+	private int yellows=0;
+	private int red=0;
 	private int assists=0;
 	private int selfCreate=0;
 	//In which step the player made a performance (as peformer or preventer), so in next step he is unavailable
@@ -239,12 +241,29 @@ public class FMPlayer extends Player {
 	public Integer getHandling() {
 		return calculateCurrentSkill(skill.getHandling());
 	}
-	public Integer getUnavailableOn() {
-		return unavailableOn;
-	}
 	
 	public void setUnavailableOn(int c) {
 		unavailableOn = c;
+	}
+
+	public int getYellows() {
+		return yellows;
+	}
+
+	public void setYellows(int yellows) {
+		this.yellows = yellows;
+	}
+
+	public int getRed() {
+		return red;
+	}
+
+	public void setRed(int red) {
+		this.red = red;
+	}
+
+	public boolean isUnavailable(int step) {
+		return red > 0 || unavailableOn == step;
 	}
 	
 

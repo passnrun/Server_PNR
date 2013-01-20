@@ -32,6 +32,9 @@
         <property name="quality" type="java.lang.Integer">
             <column name="QUALITY" />
         </property>
+        <property name="banned" type="java.lang.Integer">
+            <column name="BANNED" />
+        </property>
         <property name="latestForm" type="string">
             <column name="LATEST_FORM" length="16" />
         </property>

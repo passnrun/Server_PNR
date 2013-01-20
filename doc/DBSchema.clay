@@ -130,6 +130,9 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4d5bcb:1327e8fda13:-7f3b" mandatory="false" name="CURRENT_MANAGER">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1c55091:13c4e9f0e5b:-7fb5" mandatory="false" name="CURRENT_LEVEL">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="44f16ddc:133c5926af2:-7fb8" mandatory="false" name="STADIUM_ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
@@ -370,6 +373,9 @@
 <column auto-increment="false" column-size="16" decimal-digits="0" default-value="" id="1c4bfd2:13b71109a88:-7f74" mandatory="false" name="LATEST_FORM">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="88e235:13c5264c32e:-7ee2" mandatory="false" name="BANNED">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="4d5bcb:1327e8fda13:-7ea7" name="PK_PLAYER">
 <primary-key-column name="ID"/>
@@ -540,6 +546,12 @@
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1a0941a:13c0d393005:-7fb7" mandatory="false" name="TEAM_ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="88e235:13c5264c32e:-7f72" mandatory="false" name="YELLOW">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="88e235:13c5264c32e:-7f71" mandatory="false" name="RED">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 </column-list>
@@ -756,6 +768,9 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="5c8efc3c:133cfb5276c:-7dfe" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1c55091:13c4e9f0e5b:-7fb8" mandatory="false" name="END_DATE">
+<data-type name="DATETIME" selected-variant-pattern="DATETIME"/>
+</column>
 </column-list>
 <primary-key id="5c8efc3c:133cfb5276c:-7e01" name="PK_SEASON">
 <primary-key-column name="ID"/>
@@ -769,7 +784,7 @@
 <table-figure refid="4d5bcb:1327e8fda13:-7fff" x="7" y="129"/>
 <table-figure refid="4d5bcb:1327e8fda13:-7ff3" x="6" y="16"/>
 <table-figure refid="4d5bcb:1327e8fda13:-7fbe" x="220" y="146"/>
-<table-figure refid="4d5bcb:1327e8fda13:-7f73" x="197" y="319"/>
+<table-figure refid="4d5bcb:1327e8fda13:-7f73" x="200" y="291"/>
 <table-figure refid="4d5bcb:1327e8fda13:-7eee" x="227" y="426"/>
 <table-figure refid="4d5bcb:1327e8fda13:-7edc" x="379" y="440"/>
 <table-figure refid="4d5bcb:1327e8fda13:-7ed6" x="504" y="8"/>
@@ -787,6 +802,6 @@
 <table-figure height="57" refid="44f16ddc:133c5926af2:-7fc3" width="84" x="7" y="262"/>
 <table-figure refid="5c8efc3c:133cfb5276c:-7fcb" x="470" y="289"/>
 <table-figure refid="5c8efc3c:133cfb5276c:-7fc2" x="473" y="376"/>
-<table-figure refid="5c8efc3c:133cfb5276c:-7e02" x="755" y="342"/>
+<table-figure refid="5c8efc3c:133cfb5276c:-7e02" x="720" y="376"/>
 </diagram>
 </clay-model>

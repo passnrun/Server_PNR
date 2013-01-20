@@ -16,6 +16,8 @@ public class PlayerPerformance implements java.io.Serializable {
 	private Integer mins;
 	private Integer assist;
 	private Integer goal;
+	private Integer yellow;
+	private Integer red;
 	private Integer form;
 	private Integer morale;
 	private transient int played;
@@ -146,5 +148,21 @@ public class PlayerPerformance implements java.io.Serializable {
 
 	public void setPlayed(int played) {
 		this.played = played;
+	}
+
+	public Integer getYellow() {
+		return yellow;
+	}
+
+	public void setYellow(Integer yellow) {
+		this.yellow = yellow;
+	}
+
+	public Integer getRed() {
+		return red;
+	}
+
+	public void setRed(Integer red) {
+		this.red = red;
 	}
 }

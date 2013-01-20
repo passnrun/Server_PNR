@@ -27,6 +27,7 @@ public class JSPlayerDetail extends Player implements JSON {
 		sb.append("\"position\" :").append("\""+getPosition()+"\"").append(" ,");
 		sb.append("\"quality\" :").append("\""+getQuality()).append("\" ,");
 		sb.append("\"fitness\" :").append("\""+getFitness()).append("\" ,");
+		sb.append("\"banned\" :").append("\""+getBanned()).append("\" ,");
 		sb.append("\"morale\" :").append("\""+getMorale()).append("\" ,");
 		sb.append("\"name\" :").append("\""+getFullName()+"\"").append(" ,");
 		sb.append("\"birthdate\" :").append("\""+format.format(getBirthdate())+"\"").append(" ,");

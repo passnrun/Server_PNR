@@ -21,6 +21,7 @@ public class JSTacticPlayer extends TacticPlayer implements JSON, Comparable<JST
 		sb.append("\"nativePosition\" :").append("\""+getPlayer().getPosition()+"\"").append(" ,");
 		sb.append("\"playerId\" :").append(getPlayerId()).append(" ,");
 		sb.append("\"fitness\" :").append("\""+getPlayer().getFitness()).append("\" ,");
+		sb.append("\"banned\" :").append("\""+getPlayer().getBanned()).append("\" ,");
 		sb.append("\"morale\" :").append("\""+getPlayer().getMorale()).append("\" ,");
 		sb.append("\"name\" :").append("\""+getPlayer().getShortName()+"\"").append(" ,");
 		sb.append("\"age\" :").append(DateUtil.getAge(getPlayer().getBirthdate())).append("}");

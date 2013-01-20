@@ -22,15 +22,7 @@ public class Goal extends FMAction {
 	@Override
 	public FMAction perform() {
 		int team = getPerformer().getCurrentTeam();
-		int side = 0;
-		if (team == game.getHomeTeam().getId()){
-			game.setScore1(game.getScore1()+1);
-			side = 0;
-		}else if (team == game.getAwayTeam().getId()){
-			game.setScore2(game.getScore2()+1);
-			side = 1;
-		}
-		LogManager.getInstance().save(new GameDetail(game, getMinute(), GameDetail.GOAL, getPerformer().getName(),side, 1));
+		LogManager.getInstance().save(new GameDetail(game, getMinute(), GameDetail.GOAL, getPerformer().getName(),team, 1));
 		return null;
 	}
 	@Override

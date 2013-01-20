@@ -29,6 +29,12 @@
         <property name="assist" type="java.lang.Integer">
             <column name="ASSIST" />
         </property>
+        <property name="yellow" type="java.lang.Integer">
+            <column name="YELLOW" />
+        </property>
+        <property name="red" type="java.lang.Integer">
+            <column name="RED" />
+        </property>
         <property name="goal" type="java.lang.Integer">
             <column name="GOAL" />
         </property>
